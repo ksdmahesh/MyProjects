@@ -1,0 +1,90 @@
+﻿@model List<string>
+<table class="display table table-striped table-hover" id="tbl">
+    <thead>
+        <tr>
+            <th><span><a class="dropup grid" onclick="$('#tbl b').removeClass('caret');Toggle($(this))" style="cursor:pointer">Row<b class="caret  grid"></b></a></span></th>
+            <th><span><a class="dropup grid" onclick="$('#tbl b').removeClass('caret');Toggle($(this))" style="cursor:pointer">First Name<b class="caret  grid"></b></a></span></th>
+            <th><span><a class="dropup grid" onclick="$('#tbl b').removeClass('caret');Toggle($(this))" style="cursor:pointer">Last Name<b class="caret  grid"></b></a></span></th>
+            <th><span><a class="dropup grid" onclick="$('#tbl b').removeClass('caret');Toggle($(this))" style="cursor:pointer">Email<b class="caret  grid"></b></a></span></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @(Model.IndexOf(item) + Convert.ToInt32(Session["Start"]) +1)
+                    </td>
+                    <td>
+                        @item
+                    </td>
+                    <td>
+                        @(item.ToLower())
+                    </td>
+                    <td>
+                        @(item.ToLower() + "@mail.in")
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4">
+            @if(Convert.ToInt32(Session["End"])>0){               
+            <div style="text-align:right">
+                <input type="text" size="5" onkeydown="if(event.keyCode==13){pager($(this).val(),''); return false; }" style="text-align:center;border-bottom-left-radius: 3px; border-top-left-radius: 3px;" value='@Convert.ToInt32(Session["Index"])' />
+ @(" of "+Session["Count"])
+            </div>
+            }
+            </td>
+        </tr>
+    </tfoot>
+</table>
+<script>
+
+    $(function () {
+        $('b').removeClass('caret')
+    })
+
+    function Toggle(tag) {
+        tag.children('b').addClass('caret')
+        if (tag.attr('class').indexOf('dropup') != -1)
+        {
+            tag.removeClass('dropup')
+        }
+        else {
+            tag.addClass('dropup')
+        }
+        ajax('@(Request.Url.GetLeftPart(UriPartial.Authority) + "/Farm/DashBoard/?sortBy=bc")', tag, tag.attr('class').indexOf('dropup') != -1)
+    }
+
+    function pager(index, sortBy, tag) {
+        if (sortBy + '' != '') {          
+                ajax('@(Request.Url.GetLeftPart(UriPartial.Authority) + "/Farm/DashBoard/?sortBy=")' + sortBy);
+        }
+        else if (index + '' != '') {
+            ajax('@(Request.Url.GetLeftPart(UriPartial.Authority) + "/Farm/DashBoard/?index=")' + index);
+        }
+    }
+
+    function ajax(url, tag, isUp) {
+        $.ajax({
+            type: "get",
+            url: url,
+            data: $('#form1').serialize(),
+            dataType: "text",
+            success: function (response) {
+                $("body").html(response);
+                if (isUp) {
+                    tag.removeClass('dropup')
+                }
+                else {
+                    tag.addClass('dropup')
+                }
+            }
+        });
+    }
+
+</script>

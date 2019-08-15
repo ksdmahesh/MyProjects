@@ -1,0 +1,166 @@
+﻿
+@{
+    ViewBag.Title = "PetManagement";
+}
+@model  Models.PetManagement
+<h2>Pet Management</h2>
+
+<form id="petList" >
+    @Html.Partial("~/Views/Shared/_PetList.cshtml",Model.PetBreedList.Where(flag => flag.DeleteFlag != 'D').ToList())
+    </form>
+
+<form id="petDetails" class="modal fade" role="dialog">
+    @Html.Partial("~/Views/Shared/_PetDetails.cshtml",Model.PetBreeds)
+</form>
+
+<script>
+
+    function selectCheckbox(tag,active) {
+        if(active.srcElement.type+''!='button'&&active.srcElement.type+''!='checkbox'){
+            if(tag.find('input[type=checkbox]').is(':checked')){ 
+                tag.find('input[type=checkbox]').each(function(index,obj){
+                    obj.checked=false
+                })
+            }
+            else {
+                tag.find('input[type=checkbox]').each(function(index,obj){
+                    obj.checked=true
+                })
+            }
+        }
+    }
+
+    $(document).ready(function(){
+       
+        onLoad()
+
+        buttonChange();
+
+    });
+
+    function onLoad() {
+        var dataTable = $('#petListDataTable');
+        dataTable.dataTable({
+                'columnDefs': [{ 'targets': 0, 'searchable': false, 'orderable': false, 'className': 'dt-body-center' }],
+                'order': [[1, 'asc']]
+            });
+        $('[type=search]').each(function (index, obj) {
+            obj.placeholder = "search"
+        })
+        $('[name=' + dataTable.attr('id') + '_length] option:first').before('<option value="5">5</option>')
+        $('[name=' + dataTable.attr('id') + '_length]').val('5').trigger('change')
+        dataTable.show();
+    }
+
+    document.onchange= function () {
+        if(document.activeElement.getAttribute('name')+''=='oneToOne') {
+            if($('input[type=checkbox][name=oneToOne]').not(':checked').length==0){ 
+                $('input[type=checkbox][name=allToOne]') .each(function(index,obj){
+                    obj.checked=true
+                })
+            }
+            else {
+                $('input[type=checkbox][name=allToOne]') .each(function(index,obj){
+                    obj.checked=false
+                })
+            }
+        }
+        else if(document.activeElement.getAttribute('name')+''=='allToOne'){
+            if($('input[type=checkbox][name=allToOne]').is(':checked')) {
+                $('input[type=checkbox][name=oneToOne]') .each(function(index,obj){
+                    obj.checked=true
+                })
+            }
+            else {
+                $('input[type=checkbox][name=oneToOne]') .each(function(index,obj){
+                    obj.checked=false
+                })
+            }
+        }
+        
+        buttonChange();
+
+    }
+
+    document.onclick = function (tg) {
+        if ( $('input[type=checkbox][name=oneToOne]').length > 0) {
+            if (document.activeElement.getAttribute('name') + '' != 'allToOne') {
+                if ($('input[type=checkbox][name=oneToOne]').not(':checked').length == 0) {
+                    $('input[type=checkbox][name=allToOne]').each(function (index, obj) {
+                        obj.checked = true
+                    })
+                }
+                else {
+                    $('input[type=checkbox][name=allToOne]').each(function (index, obj) {
+                        obj.checked = false
+                    })
+                }
+            }
+
+            buttonChange();
+        }
+    }
+
+    function buttonChange() {
+        if ($('input[type=checkbox][name=oneToOne]').length > 0) {
+            $('input[type=checkbox][name=oneToOne]:checked').parents('tr').children('td').each(function (index, obj) {
+                $(obj).attr('style', ' background-color: rgba(152, 238, 243, 0.39)')
+            })
+            $('input[type=checkbox][name=oneToOne]').not(':checked').parents('tr').children('td').each(function (index, obj) {
+                $(obj).removeAttr('style')
+            })
+            if ($('input[type=checkbox][name=allToOne]').is(':checked') || $('input[type=checkbox][name=oneToOne]').is(':checked')) {
+                $('input[value="add"]').val('delete').removeClass('btn-primary').addClass('btn-danger')
+                $('input[value="View"]').attr('disabled', '');
+            }
+            else {
+                $('input[value="delete"]').val('add').removeClass('btn-danger').addClass('btn-primary')
+                $('input[value="View"]').removeAttr('disabled')
+            }
+    }
+    }
+
+    function ajax(url, formId) {
+        if (formId == 'petList') {
+            $('input[type=checkbox][name=oneToOne]:checked').each(function (index, obj) {
+                if (index == 0) {
+                    url += '[]';
+                }
+                url = url.substring(0, url.indexOf(']')) + obj.value + ',' + url.substring(url.indexOf(']'));
+            })
+        }
+        
+        $.ajax({
+            type: "get",
+            url: '@(Url.Action("PetManagement"))'+url,
+            data: $('#'+formId).serialize(),
+            dataType: "text",
+            success: function (response) {
+                $('#' + formId).html(response)
+                if (formId == 'petList') {
+                    onLoad()
+                }
+                else if (formId == 'petDetails') {
+                    if (url.indexOf('?id=')==-1) {
+                        $('#Add').val('Add');
+                    }
+                    else {
+                        $("#Add").val("Update");
+                    }                    
+                }
+            }
+        });
+    }
+
+    function adder() {
+        $.ajax({
+            url: '@(Url.Action("PetManagement")+"?req=newItem")',
+            success: function (response) {
+                $('#petDetails').html(response)
+                $("#Add").val("Add");
+                $("#petDetails").modal("show")
+            }
+         });
+    }
+
+</script>

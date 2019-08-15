@@ -1,0 +1,289 @@
+﻿<Window x:Class="MiniPro.Dialogs.Others"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Others" Height="650" Width="380" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" KeyDown="Window_KeyDown" Icon="{Binding Styler.WindowIconPath,UpdateSourceTrigger=PropertyChanged}" ResizeMode="NoResize">
+
+
+    <Grid Margin="5" Background="White" PreviewMouseLeftButtonDown="Grid_PreviewMouseLeftButtonDown">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="35" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0" Grid.Row="0" MouseLeftButtonDown="Image_MouseLeftButtonDown" Name="Logo" />
+        <TextBlock Text="{Binding Styler.ProTitle,UpdateSourceTrigger=PropertyChanged}" FontSize="16" Grid.Row="0" Margin="0,0,35,0" Padding="0,10" Grid.Column="1" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
+        <Button Grid.ColumnSpan="2" Content="X" Grid.Row="0" Height="30" Width="30" HorizontalAlignment="Right" Margin="0,5,5,0" Click="Button_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="DarkBlue"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFF7F7F7"/>
+                            <Setter Property="Foreground" Value="DarkBlue" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <ScrollViewer Grid.Row="1" Margin="0,10,0,10" Height="575" Grid.ColumnSpan="2" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1" Margin="35,20,35,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="1.3*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Constants:" VerticalAlignment="Center" FontSize="16" Grid.Column="0" Grid.Row="0" Margin="0,5"/>
+                    <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Height="20" Margin="0,5,1,5" Grid.Row="1" Grid.Column="0" Name="InputConst" TextChanged="InputConst_TextChanged" PreviewTextInput="InputConst_PreviewTextInput"/>
+                    <ComboBox VerticalContentAlignment="Center" Width="auto" Margin="1,5,0,5" Height="20" Grid.Row="1" Grid.Column="1" Name="ConstantListBox" SelectionChanged="ConstantListBox_SelectionChanged"></ComboBox>
+                    <TextBox Margin="0,5,1,5" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" IsReadOnly="True" Name="ListValue"/>
+                    <TextBox Margin="1,5,0,5" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" IsReadOnly="True" Name="UnitValue"/>
+                </Grid>
+                <Grid Margin="35,0,35,10" Grid.Row="2" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="A.P" FontSize="16" Grid.Row="0" />
+                    <TextBlock Text="First Number:" FontSize="14" Grid.Column="0" Grid.Row="1" Margin="0,5,0,5"/>
+                    <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="1" Grid.Row="1" Name="AP1" PreviewTextInput="InputConst_PreviewTextInput"/>
+                    <TextBlock Text="Difference:" FontSize="14" Grid.Column="0" Grid.Row="2" Margin="0,5,0,5"/>
+                    <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="1" Grid.Row="2" Name="AP2" PreviewTextInput="InputConst_PreviewTextInput"/>
+                    <TextBlock Text="Last Number:" FontSize="14" Grid.Column="0" Grid.Row="3" Margin="0,5,0,5"/>
+                    <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="1" Grid.Row="3" Name="AP3" PreviewTextInput="InputConst_PreviewTextInput"/>
+                    <ComboBox Grid.Column="0" Grid.Row="4" Margin="0,10,0,10" Name="APSelection">
+                        <ComboBoxItem Content="Sum" IsSelected="True"/>
+                        <ComboBoxItem Content="Sum-Difference" />
+                    </ComboBox>
+                    <TextBlock Text="Ans" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Margin="10,0,40,0" Name="OutAP"/>
+                    <Button Content="Solve" Grid.Column="1" Grid.Row="4" Width="30" HorizontalAlignment="Right" Margin="10,5,10,5" Name="APResult" Click="APResult_Click" />
+                </Grid>
+                <Grid Margin="35,0,35,10" Grid.Row="3" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="G.P" FontSize="16" Grid.Row="0" />
+                    <TextBlock Text="First Number:" FontSize="14" Grid.Column="0" Grid.Row="1" Margin="0,5,0,5"/>
+                    <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="1" Grid.Row="1" Name="GP1" PreviewTextInput="InputConst_PreviewTextInput"/>
+                    <TextBlock Text="Ratio:" FontSize="14" Grid.Column="0" Grid.Row="2" Margin="0,5,0,5"/>
+                    <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="1" Grid.Row="2" Name="GP2" PreviewTextInput="InputConst_PreviewTextInput"/>
+                    <TextBlock Text="Last Number:" FontSize="14" Grid.Column="0" Grid.Row="3" Margin="0,5,0,5"/>
+                    <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="1" Grid.Row="3" Name="GP3" PreviewTextInput="InputConst_PreviewTextInput"/>
+                    <ComboBox Grid.Column="0" Grid.Row="4" Margin="0,10,0,10" Name="GPSelection" >
+                        <ComboBoxItem Content="Sum" IsSelected="True"/>
+                        <ComboBoxItem Content="Sum-Difference" />
+                    </ComboBox>
+                    <TextBlock Text="Ans" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Margin="10,0,40,0" Name="OutGP"/>
+                    <Button Content="Solve" Grid.Column="1" Grid.Row="4" Width="30" HorizontalAlignment="Right" Margin="10,5,10,5" Name="GPResult" Click="GPResult_Click"/>
+                </Grid>
+                <Grid Margin="35,0,35,10" Grid.Row="4" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="H.P" FontSize="16" Grid.Row="0" />
+                    <TextBlock Text="First Number:" FontSize="14" Grid.Column="0" Grid.Row="1" Margin="0,5,0,5"/>
+                    <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="1" Grid.Row="1" Name="HP1" PreviewTextInput="InputConst_PreviewTextInput"/>
+                    <TextBlock Text="Difference:" FontSize="14" Grid.Column="0" Grid.Row="2" Margin="0,5,0,5"/>
+                    <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="1" Grid.Row="2" Name="HP2" PreviewTextInput="InputConst_PreviewTextInput"/>
+                    <TextBlock Text="Last Number:" FontSize="14" Grid.Column="0" Grid.Row="3" Margin="0,5,0,5"/>
+                    <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="1" Grid.Row="3" Name="HP3" PreviewTextInput="InputConst_PreviewTextInput"/>
+                    <TextBlock Text="Ans" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Margin="10,0,40,0" Name="OutHP"/>
+                    <ComboBox Grid.Column="0" Grid.Row="4" Margin="0,10,0,10" Name="HPSelect" >
+                        <ComboBoxItem Content="Sum" IsSelected="True"/>
+                        <ComboBoxItem Content="Sum-Difference" />
+                    </ComboBox>
+                    <Button Content="Solve" Grid.Column="1" Grid.Row="4" Width="30" HorizontalAlignment="Right" Margin="10,5,10,5" Name="HPResult" Click="HPResult_Click" />
+                </Grid>
+                <Grid Margin="35,0,35,10" Grid.Row="5" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Two Equations:" FontSize="16" Grid.Row="0" />
+                    <Button Content=" ∠ " PreviewMouseLeftButtonDown="Angler_PreviewMouseLeftButtonDown" Click="Angler_Click" Width="30" Height="30" Name="Angler" Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Grid Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Name="TwoQ">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="a1:" FontSize="14" Grid.Column="0" Grid.Row="0" Margin="0,5,0,5"/>
+                        <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="1" Grid.Row="0" Name="A1" PreviewTextInput="InputConst_PreviewTextInput"/>
+                        <TextBlock Text="a2:" FontSize="14" Grid.Column="2" Grid.Row="0" Margin="0,5,0,5"/>
+                        <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="3" Grid.Row="0" Name="A2" PreviewTextInput="InputConst_PreviewTextInput"/>
+                        <TextBlock Text="a:" FontSize="14" Grid.Column="4" Grid.Row="0" Margin="0,5,0,5"/>
+                        <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="5" Grid.Row="0" Name="A0" PreviewTextInput="InputConst_PreviewTextInput"/>
+                        <TextBlock Text="b1:" FontSize="14" Grid.Column="0" Grid.Row="1" Margin="0,5,0,5"/>
+                        <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="1" Grid.Row="1" Name="B1"/>
+                        <TextBlock Text="b2:" FontSize="14" Grid.Column="2" Grid.Row="1" Margin="0,5,0,5"/>
+                        <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="3" Grid.Row="1" Name="B2" PreviewTextInput="InputConst_PreviewTextInput"/>
+                        <TextBlock Text="b:" FontSize="14" Grid.Column="4" Grid.Row="1" Margin="0,5,0,5"/>
+                        <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="5" Grid.Row="1" Name="B0" PreviewTextInput="InputConst_PreviewTextInput"/>
+                        <TextBlock Text="X" Grid.Column="0" Grid.ColumnSpan="6" Grid.Row="2" VerticalAlignment="Center" Name="OutX"/>
+                        <TextBlock Text="Y" Grid.Column="0" Grid.ColumnSpan="6" Grid.Row="3" VerticalAlignment="Center" Name="OutY"/>
+                    </Grid>
+                    <Button Content="Solve" Grid.Column="1" Grid.Row="2" Width="30" HorizontalAlignment="Right" Margin="10,5,10,5" Name="TwoEquationSolve" Click="TwoEquationSolve_Click" />
+                </Grid>
+                <Grid Margin="35,0,35,10" Grid.Row="6" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Three Equations:" FontSize="16" Grid.Row="0" />
+                    <Button Content=" ∠ " Click="Angler_Click" Width="30" Height="30" Name="AngleThree" Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center" PreviewMouseLeftButtonDown="AngleThree_PreviewMouseLeftButtonDown"/>
+                    <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Name="ThreeQ">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="a1:" FontSize="14" Grid.Column="0" Grid.Row="0" Margin="0,5,0,5"/>
+                        <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="1" Grid.Row="0" Name="AT1" PreviewTextInput="InputConst_PreviewTextInput"/>
+                        <TextBlock Text="a2:" FontSize="14" Grid.Column="2" Grid.Row="0" Margin="0,5,0,5"/>
+                        <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="3" Grid.Row="0" Name="AT2" PreviewTextInput="InputConst_PreviewTextInput"/>
+                        <TextBlock Text="a3:" FontSize="14" Grid.Column="4" Grid.Row="0" Margin="0,5,0,5"/>
+                        <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="5" Grid.Row="0" Name="AT3" PreviewTextInput="InputConst_PreviewTextInput"/>
+                        <TextBlock Text="a:" FontSize="14" Grid.Column="6" Grid.Row="0" Margin="0,5,0,5"/>
+                        <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="7" Grid.Row="0" Name="AT0" PreviewTextInput="InputConst_PreviewTextInput"/>
+                        <TextBlock Text="b1:" FontSize="14" Grid.Column="0" Grid.Row="1" Margin="0,5,0,5"/>
+                        <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="1" Grid.Row="1" Name="BT1" PreviewTextInput="InputConst_PreviewTextInput"/>
+                        <TextBlock Text="b2:" FontSize="14" Grid.Column="2" Grid.Row="1" Margin="0,5,0,5"/>
+                        <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="3" Grid.Row="1" Name="BT2" PreviewTextInput="InputConst_PreviewTextInput"/>
+                        <TextBlock Text="b3:" FontSize="14" Grid.Column="4" Grid.Row="1" Margin="0,5,0,5"/>
+                        <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="5" Grid.Row="1" Name="BT3"/>
+                        <TextBlock Text="b:" FontSize="14" Grid.Column="6" Grid.Row="1" Margin="0,5,0,5"/>
+                        <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="7" Grid.Row="1" Name="BT0" PreviewTextInput="InputConst_PreviewTextInput"/>
+                        <TextBlock Text="c1:" FontSize="14" Grid.Column="0" Grid.Row="2" Margin="0,5,0,5"/>
+                        <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="1" Grid.Row="2" Name="CT1" PreviewTextInput="InputConst_PreviewTextInput"/>
+                        <TextBlock Text="c2:" FontSize="14" Grid.Column="2" Grid.Row="2" Margin="0,5,0,5"/>
+                        <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="3" Grid.Row="2" Name="CT2" PreviewTextInput="InputConst_PreviewTextInput"/>
+                        <TextBlock Text="c3:" FontSize="14" Grid.Column="4" Grid.Row="2" Margin="0,5,0,5"/>
+                        <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="5" Grid.Row="2" Name="CT3" PreviewTextInput="InputConst_PreviewTextInput"/>
+                        <TextBlock Text="c:" FontSize="14" Grid.Column="6" Grid.Row="2" Margin="0,5,0,5"/>
+                        <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="7" Grid.Row="2" Name="CT0" PreviewTextInput="InputConst_PreviewTextInput"/>
+                        <TextBlock Text="X" Grid.Column="0" Grid.ColumnSpan="8" Grid.Row="3" VerticalAlignment="Center" Name="OutTX"/>
+                        <TextBlock Text="Y" Grid.Column="0" Grid.ColumnSpan="8" Grid.Row="4" VerticalAlignment="Center" Name="OutTY"/>
+                        <TextBlock Text="Z" Grid.Column="0" Grid.ColumnSpan="8" Grid.Row="5" VerticalAlignment="Center" Name="OutTZ"/>
+                    </Grid>
+                    <Button Content="Solve" Name="ThreeEquationSolve" Click="ThreeEquationSolve_Click" Grid.Column="1" Grid.Row="2" Width="30" HorizontalAlignment="Right" Margin="10,5,10,5" />
+                </Grid>
+                <Grid Grid.Row="7" Margin="35,0,35,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Conversion:" FontSize="16" Grid.Column="0" Grid.Row="0" Margin="5" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Name="Convert" SelectionChanged="Convert_SelectionChanged" >
+                        <ComboBoxItem Content="Angle" IsSelected="True"/>
+                        <ComboBoxItem Content="Area" />
+                        <ComboBoxItem Content="Base" />
+                        <ComboBoxItem Content="Energy" />
+                        <ComboBoxItem Content="Length" />
+                        <ComboBoxItem Content="Power" />
+                        <ComboBoxItem Content="Pressure" />
+                        <ComboBoxItem Content="Temperature" />
+                        <ComboBoxItem Content="Time" />
+                        <ComboBoxItem Content="Velocity" />
+                        <ComboBoxItem Content="Volume" />
+                        <ComboBoxItem Content="Weight/Mass" />
+                    </ComboBox>
+                    <TextBox PreviewKeyDown="InputConst_PreviewKeyDown" Margin="10,5,10,5" Grid.Column="0" FontSize="15" Grid.Row="2" TextChanged="ConvertText_TextChanged" Name="ConvertText" PreviewTextInput="InputConst_PreviewTextInput"></TextBox>
+                    <ComboBox Grid.Column="1" Grid.Row="2" Name="from" SelectionChanged="from_SelectionChanged" ItemsSource="{Binding Styler.ItemSource,UpdateSourceTrigger=PropertyChanged}" Margin="0,5,10,5"></ComboBox>
+                    <TextBlock FontSize="15" Text="To" VerticalAlignment="Center" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">
+                    </TextBlock>
+                    <TextBox Grid.Column="0" Grid.Row="4" IsReadOnly="True" Margin="10,5,10,5" Text="{Binding Result,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <ComboBox Grid.Row="4" Grid.Column="1" Name="to" SelectionChanged="to_SelectionChanged" ItemsSource="{Binding Styler.ItemSource,UpdateSourceTrigger=PropertyChanged}" Margin="0,5,10,5"></ComboBox>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>

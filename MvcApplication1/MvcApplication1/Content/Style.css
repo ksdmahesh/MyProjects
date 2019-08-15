@@ -1,0 +1,68 @@
+﻿body:not(td) {
+    color:white
+}
+
+.table-strip > tbody > tr > td:nth-child(odd),
+.table-strip > tbody > tr:nth-child(odd) > th {
+    background-color: #b4d4ff;
+    font-weight: bold;
+    text-align: right;
+}
+
+.table-strip > tbody > tr > td:nth-child(even),
+.table-strip > tbody > tr:nth-child(even) > th {
+    background-color: #e8f2ff;
+}
+
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+    background-color: none;
+}
+
+select, input[type="search"] {
+    padding: 4px 10px 4px 10px;
+    border-radius: 5px;
+    margin: 5px;
+    border-top: 1px solid #808080;
+    border-left: 1px solid #808080;
+    border-bottom: 2px solid #808080;
+    border-right: 2px solid #808080;
+}
+
+    select > option {
+        border-radius: 5px;
+        margin: 5px;
+    }
+
+.add {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #DDDEF1), color-stop(100%, #003EEC));
+    background: -webkit-linear-gradient(top, #DDDEF1 0%, #003EEC 100%);
+    background: -moz-linear-gradient(top, #DDDEF1 0%, #003EEC 100%);
+    background: -ms-linear-gradient(top, #DDDEF1 0%, #003EEC 100%);
+    background: -o-linear-gradient(top, #DDDEF1 0%, #003EEC 100%);
+    background: linear-gradient(to bottom, #DDDEF1 0%, #003EEC 100%);
+    border: 1px inset #003EEC;
+    color: white;
+    font-size: large;
+    font-weight: bolder;
+}
+
+.delete {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFB8C1), color-stop(100%, #FF0018));
+    background: -webkit-linear-gradient(top, #FFB8C1 0%, #FF0018 100%);
+    background: -moz-linear-gradient(top, #FFB8C1 0%, #FF0018 100%);
+    background: -ms-linear-gradient(top, #FFB8C1 0%, #FF0018 100%);
+    background: -o-linear-gradient(top, #FFB8C1 0%, #FF0018 100%);
+    background: linear-gradient(to bottom, #FFB8C1 0%, #FF0018 100%);
+    padding: 7px 12px;
+    margin: 7px;
+    border-radius: 100%;
+    border: 1px inset #FF0018;
+    color: white;
+    font-size: large;
+    font-weight: bolder;
+}
+
+.selected {
+    background-color: #232007;
+}

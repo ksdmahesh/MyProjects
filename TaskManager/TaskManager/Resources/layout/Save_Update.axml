@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        style="@style/RowDefinition"
+        android:id="@+id/tab1">
+        <LinearLayout
+            style="@style/TextBox">
+            <EditText
+                style="@style/TextBox"
+                android:hint="Title"
+                android:id="@+id/Title"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <EditText
+            style="@style/TextBox"
+            android:id="@+id/Description"
+            android:layout_weight="0.4"
+            android:hint="Description" />
+        <LinearLayout
+            style="@style/TextBox">
+            <EditText
+                style="@style/TextView"
+                android:hint="End Date"
+                android:editable="false"
+                android:id="@+id/DatePick"
+                android:layout_gravity="bottom"
+                android:layout_height="wrap_content" />
+            <EditText
+                style="@style/TextView"
+                android:hint="End Time"
+                android:editable="false"
+                android:id="@+id/TimePick"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom" />
+            <CheckBox
+                android:drawableStart="@android:drawable/ic_lock_idle_alarm"
+                android:layout_gravity="bottom"
+                android:id="@+id/IsAlert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            style="@style/TextBox">
+            <Button
+                android:text="Done"
+                style="@style/TextBox"
+                android:id="@+id/Done"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="-5dp"
+                android:layout_marginRight="-5dp" />
+            <Button
+                android:text="Cancel"
+                style="@style/TextBox"
+                android:id="@+id/Close"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="-5dp"
+                android:layout_marginRight="-5dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

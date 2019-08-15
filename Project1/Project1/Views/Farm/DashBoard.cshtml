@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "DashBoard";
+}
+@model Models.Class1
+<h3>DashBoard</h3>
+<form id="form1">
+    <div class="table-responsive grid1">
+
+        @Html.Partial("~/Views/Shared/Grid1.cshtml", Model.List1)
+    </div>
+</form>

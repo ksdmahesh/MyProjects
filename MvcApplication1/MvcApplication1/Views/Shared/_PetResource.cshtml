@@ -1,0 +1,119 @@
+﻿@model  Management.PetBreeds
+
+<div class="modal-dialog" style="width:75%;">
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">@{
+                <select id="petType" onchange="ajax('?req=newPet['+$(this).val()+']','petDetails');">
+                    @foreach (string item in typeof(Management.PetType).GetEnumNames())
+                    {
+                        if (item == Model.Type.ToString())
+                        {
+                            <option value="@item" selected="selected">@item</option>  
+                        }
+                        else
+                        {
+                             <option value="@item" >@item</option>  
+                        }
+                    }
+                </select>
+                string type = (Attribute.GetCustomAttribute(typeof(Management.PetType).GetField(Model.Type + ""), typeof(Attribute)) as System.ComponentModel.DescriptionAttribute).Description;}
+                <label id="pet">
+                    @(" " + Model.Pet + (type.Contains('/') ? " (" + type.Substring(type.IndexOf('/') + 1) + " ) " : ""))
+                </label>
+                
+            </h4>
+        </div>
+        <div class="modal-body">
+
+            <table class="display table table-strip table-hover" >
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                        <td>@Model.Details.Name </td>
+                         <td>Breed </td>
+                        <td>@((Attribute.GetCustomAttribute(typeof(Management.Breed).GetField(Model.Breed + ""), typeof(Attribute)) as System.ComponentModel.DescriptionAttribute).Description) </td>                       
+                    </tr>
+                    <tr>
+                        <td>Originates</td>
+                        <td>@((Attribute.GetCustomAttribute(typeof(Management.PetType).GetField(Model.Type + ""), typeof(Attribute)) as System.ComponentModel.DescriptionAttribute).Description) </td>
+                        <td>Color </td>
+                        <td>@Model.Pet </td>
+                    </tr>
+                    <tr>
+                        <td>Age (Years)
+                        </td>
+                        <td>@Model.Details.Age
+                        </td>
+                        <td>Health (%)
+                        </td>
+                        <td>@Model.Details.Health
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Today's Milk (ml)
+                        </td>
+                        <td>@Model.MilkSheds.TodaysMilk
+                        </td>
+                        <td>Total Milk (ml)
+                        </td>
+                        <td>@Model.MilkSheds.TotalMilk
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Average Milk (ml)
+                        </td>
+                        <td>@Model.MilkSheds.AverageMilk
+                        </td>
+                        <td>Remarks
+                        </td>
+                        <td>@Model.Details.Remarks
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Money Management For Food (Rs.)
+                        </td>
+                        <td>@Model.MoneyManagement.ForFood
+                        </td>
+                        <td>Money Management For Health (Rs.)
+                        </td>
+                        <td>@Model.MoneyManagement.ForHealth
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Credit (Rs.)
+                        </td>
+                        <td>@Model.MoneyManagement.Credit
+                        </td>
+                        <td>Debit (Rs.)
+                        </td>
+                        <td>@Model.MoneyManagement.Debit
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Total Credited (Rs.)
+                        </td>
+                        <td>@Model.MoneyManagement.TotalCredited
+                        </td>
+                        <td>Total Debited (Rs.)
+                        </td>
+                        <td>@Model.MoneyManagement.TotalDebited
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align:left">
+                             @(Html.Raw(Model.Details.About))
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="modal-footer">
+            <input type="button" value="Sold" class="btn btn-warning" onclick='ajax("@("?req=sold["+Model.Id+"]")    ","petList")' />
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>

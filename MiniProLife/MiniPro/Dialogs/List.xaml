@@ -1,0 +1,58 @@
+﻿<Window x:Class="MiniPro.Dialogs.List"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="List" Height="300" Width="380" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" 
+        xmlns:converter="clr-namespace:MiniPro.Converters" KeyDown="Window_KeyDown" Icon="{Binding Styler.WindowIconPath,UpdateSourceTrigger=PropertyChanged}" ResizeMode="NoResize"
+        >
+
+    <Window.Resources>
+
+        <converter:BoolToVisible x:Key="BoolToVisible"></converter:BoolToVisible>
+        
+    </Window.Resources>
+
+    <Grid Background="White" Margin="5" PreviewMouseLeftButtonDown="Grid_PreviewMouseLeftButtonDown">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="35" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0" Grid.Row="0" MouseLeftButtonDown="Image_MouseLeftButtonDown" Name="Logo" Margin="0,0,0,20" />
+        <TextBlock Text="{Binding Styler.ProTitle,UpdateSourceTrigger=PropertyChanged}" FontSize="16" Grid.Row="0" Margin="0,0,0,20" Padding="0,10" Grid.Column="1" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
+        <Separator Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="1" Margin="0,5,0,5"/>
+        <TextBlock Grid.ColumnSpan="2" Text="Number of List Items:" Grid.Row="2" Grid.Column="0" Margin="5,5,0,5" FontSize="14"/>
+        <ComboBox Grid.ColumnSpan="2" Grid.Row="2" Margin="85,5,20,5" Width="auto" HorizontalAlignment="Right" Name="MatOrStat" SelectionChanged="MatOrStat_SelectionChanged">
+            <ComboBoxItem Content="Matrix" IsSelected="True" />
+            <ComboBoxItem Content="Statistics" />
+        </ComboBox>
+        <ComboBox Grid.ColumnSpan="2" Grid.Row="3" Margin="85,5,20,5" Width="auto" HorizontalAlignment="Right" Name="VariableNames" SelectionChanged="VariableNames_SelectionChanged">
+            <ComboBoxItem Content="A" IsSelected="True" />
+            <ComboBoxItem Content="B" />
+            <ComboBoxItem Content="C" />
+            <ComboBoxItem Content="D" />
+            <ComboBoxItem Content="E" />
+            <ComboBoxItem Content="F" />
+        </ComboBox>
+        <TextBox Grid.ColumnSpan="2" FontSize="12" Height="25"  Grid.Row="3" Grid.Column="0" Margin="20,5,70,5" TextChanged="Number_TextChanged" Name="Number" 
+        Visibility="{Binding Styler.StatVisible,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVisible}}"/>
+        <StackPanel Grid.ColumnSpan="2" Grid.Row="3" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center"
+            Visibility="{Binding Styler.MatVisible,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVisible}}">
+            <TextBlock Text="m" VerticalAlignment="Center" FontSize="12"/>
+            <TextBox FontSize="12" Height="25" Width="40" Margin="10,0,10,0" Grid.Row="3" Grid.Column="0" Name="m" TextChanged="m_TextChanged"/>
+            <TextBlock Text="* n" VerticalAlignment="Center" FontSize="12"/>
+            <TextBox Height="25" FontSize="12" Width="40" Margin="10,0,10,0" Grid.Row="3" Grid.Column="0" Name="n" TextChanged="n_TextChanged"/>
+        </StackPanel>
+        <Separator Grid.ColumnSpan="2" Grid.Row="4" HorizontalAlignment="Stretch" Margin="0,30,0,25"/>
+        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Center" >
+            <Button Content=" Next " Margin="0,0,5,0" Name="Next" Click="Next_Click" IsEnabled="{Binding Styler.IsEnabled,UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Content=" Close " Margin="5,0,0,0" Click="Close_Click" Name="CloseWindow"/>
+        </StackPanel>
+    </Grid>
+</Window>

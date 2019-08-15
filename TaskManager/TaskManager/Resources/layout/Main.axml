@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/tabHost">
+    <LinearLayout
+        style="@style/RowDefinition">
+        <TabWidget
+            style="@style/TabsHeader" />
+        <FrameLayout
+            style="@style/TabsBody">
+        <!--Tab1-->
+            <LinearLayout
+                style="@style/RowDefinition"
+                android:id="@+id/tab1">
+                <LinearLayout
+                    style="@style/TextBox"
+                    android:layout_weight="0.8"
+                    android:layout_height="0dp">
+                    <ScrollView
+                        android:id="@+id/tab1Content"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent">
+                    <Button
+                        android:text="Add"
+                        android:id="@+id/Add"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom" />
+                </LinearLayout>
+            </LinearLayout>
+        <!--Tab2-->
+            <LinearLayout
+                style="@style/RowDefinition"
+                android:id="@+id/tab2">
+                <LinearLayout
+                    style="@style/TextBox"
+                    android:layout_weight="0.8"
+                    android:layout_height="0dp">
+                    <ScrollView
+                        android:id="@+id/tab2Content"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent" />
+                </LinearLayout>
+            </LinearLayout>
+        <!--Tab3-->
+            <LinearLayout
+                style="@style/RowDefinition"
+                android:id="@+id/tab3">
+                <LinearLayout
+                    style="@style/TextBox"
+                    android:layout_weight="0.8"
+                    android:layout_height="0dp">
+                    <ScrollView
+                        android:id="@+id/tab3Content"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent" />
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+</TabHost>

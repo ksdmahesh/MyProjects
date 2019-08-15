@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Resources";
+}
+
+<h2>Resources</h2>
+
+@model  Models.PetManagement
+
+<form id="petList" >
+    @Html.Partial("~/Views/Shared/_PetResourceList.cshtml",Model.PetBreedList.Where(flag => flag.DeleteFlag != 'D').ToList())
+    </form>
+
+<form id="petDetails" class="modal fade" role="dialog">
+    @Html.Partial("~/Views/Shared/_PetResource.cshtml",Model.PetBreeds)
+</form>
+
+<script>
+
+    function selectCheckbox(tag,active) {
+        if(active.srcElement.type+''!='button'&&active.srcElement.type+''!='checkbox'){
+            if(tag.find('input[type=checkbox]').is(':checked')){ 
+                tag.find('input[type=checkbox]').each(function(index,obj){
+                    obj.checked=false
+                })
+            }
+            else {
+                tag.find('input[type=checkbox]').each(function(index,obj){
+                    obj.checked=true
+                })
+            }
+        }
+    }
+
+    $(document).ready(function(){
+       
+        onLoad()
+
+        buttonChange();
+
+    });
+
+    function onLoad() {
+        var dataTable = $('.dataTable');
+        dataTable.dataTable({ 'columnDefs': [{ 'targets': 0, 'searchable': false, 'orderable': false, 'className': 'dt-body-center' }], 'order': [[1, 'asc']] });
+        $('[type=search]').each(function (index, obj) {
+            obj.placeholder = "search"
+        })
+        $('[name=' + dataTable.attr('id') + '_length] option:first').before('<option value="5">5</option>')
+        $('[name=' + dataTable.attr('id') + '_length]').val('5').trigger('change')
+        dataTable.show();
+    }
+
+    function ajax(url, formId) {        
+        $.ajax({
+            type: "get",
+            url: '@(Url.Action("Resources"))'+url,
+            data: $('#'+formId).serialize(),
+            dataType: "text",
+            success: function (response) {
+                $('#' + formId).html(response)
+                if (formId == 'petList') {
+                    onLoad()
+                }
+            }
+        });
+    }
+
+</script>

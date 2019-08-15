@@ -1,0 +1,41 @@
+﻿@model  List<Management.PetBreeds>
+
+<table class="display table table-striped table-hover dataTable" style="display:none;width:100%">
+    <thead>
+        <tr>
+            <th colspan="5" style="text-align: left">Total Number of Pets = 10 </th>
+            <th colspan="5" style="text-align: right">Required Number of Pets = 0 
+            </th>
+        </tr>
+        <tr>      
+            <th style="vertical-align:middle">Name</th>
+            <th style="vertical-align:middle">Age</th>            
+            <th style="vertical-align:middle">Type</th>         
+            <th style="vertical-align:middle">Total Milk (ml)</th> 
+            <th style="vertical-align:middle">Total Dung (kg)</th> 
+            <th style="vertical-align:middle">Total Pee (ml)</th> 
+            <th style="vertical-align:middle">Buy Price</th>
+            <th style="vertical-align:middle">Sell Price</th>   
+            <th data-sortable="false" style="text-align:center;vertical-align:middle">Action</th>               
+        </tr>
+    </thead>
+    <tbody>
+         @foreach (Management.PetBreeds item in Model.Where(flag => flag.DeleteFlag != 'D'))
+         {
+         <tr onclick="selectCheckbox($(this),event)">
+                <td style="vertical-align:middle">@item.Details.Name</td>      
+                <td style="vertical-align:middle">@item.Details.Age</td>                              
+                <td style="vertical-align:middle">@((Attribute.GetCustomAttribute(typeof(Management.PetType).GetField(item.Type+""),typeof(Attribute)) as System.ComponentModel.DescriptionAttribute).Description.Split('/')[0])</td>
+                <td style="vertical-align:middle">@item.MilkSheds.TotalMilk</td>  
+                <td style="vertical-align:middle">@item.Resources.TotalDung</td>  
+                <td style="vertical-align:middle">@item.Resources.TotalPee</td>                   
+                <td style="vertical-align:middle">@item.Details.BuyPrice</td>                   
+                <td style="vertical-align:middle">@item.Details.SellPrice</td>                   
+                <td style="text-align:center;vertical-align:middle">
+                     <input type="button" value="View" class="btn btn-info" onclick='ajax("@("?req=id["+item.Id+"]")","petDetails")' data-toggle="modal" data-target="#petDetails" />
+                    <input type="button" value="Sold" class="btn btn-warning" onclick='ajax("@("?req=sold["+item.Id+"]")    ","petList")' data-toggle="modal" data-target="#petDetails" />
+                </td>
+            </tr>
+            }
+    </tbody>
+</table>

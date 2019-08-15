@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</head>
+<body>
+    <div>
+        <div class="dropdown">
+            <div class="btn-group" style="width:100%;background-color:#428bca;border-color:#357ebd;">
+                <div class="container body-content">
+                    @Html.ActionLink("DashBoard", "DashBoard", "Farm", new { area = "" }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("LandManagement", "LandManagement", "Farm", new { area = "" }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("PetManagement", "PetManagement", "Farm", new { area = "" }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Resources", "Resources", "Farm", new { area = "" }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Links", "Links", "Farm", new { area = "" }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Status", "Status", "Farm", new { area = "" }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    
+</body>
+</html>

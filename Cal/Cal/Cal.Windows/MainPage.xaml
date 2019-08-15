@@ -1,0 +1,644 @@
+﻿<Page
+    x:Class="Cal.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Cal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" 
+    xmlns:converter="using:Cal.Converters"     >
+    <Page.Resources>
+        <converter:BoolToVisible x:Key="BoolToVisible"></converter:BoolToVisible>
+    </Page.Resources>
+    <Grid Background="White" VerticalAlignment="Stretch" >
+
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="50" Visibility="{Binding Styler.IsHome,Converter={StaticResource BoolToVisible},UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="0,10" HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <RadioButton Content="Home" Grid.Column="0" Margin="0,0,20,0" IsChecked="{Binding Styler.Home,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Name="HomeSelect" GroupName="Type" />
+                <RadioButton Content="Algebra" Grid.Column="1" Margin="20,0,20,0" IsChecked="{Binding Styler.Algebra,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Name="AlgebraSelect" GroupName="Type"/>
+                <RadioButton Grid.Column="2" Content="Others" Margin="20,0,20,0" IsChecked="{Binding Styler.Others,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Name="OthersSelect" GroupName="Type"/>
+                <Button Grid.Column="3" Content="Launch On Desktop" Width="auto" HorizontalAlignment="Right" Click="ViewOnDesk_Click" Name="ViewOnDesk"/>
+            </Grid>
+            <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,1" Background="White" >
+                <Grid Name="Home" HorizontalAlignment="Center" Visibility="{Binding Styler.Home,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVisible}}"
+              >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Border BorderThickness="1" BorderBrush="Black" Grid.Row="1" Margin="40,30" >
+                        <StackPanel Name="QABox" Background="White" VerticalAlignment="Stretch" Height="auto" HorizontalAlignment="Stretch">
+
+                            <TextBox IsSpellCheckEnabled="True" IsTextPredictionEnabled="False" TextWrapping="Wrap" FontSize="30" IsHoldingEnabled="False" BorderThickness="0" Name="QBox" Height="50" TextChanged="QBox_TextChanged"  KeyDown="QBox_KeyDown" />
+
+                            <TextBox Text="{Binding Styler.MainResult,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" TextWrapping="Wrap" IsReadOnly="True" FontSize="30" BorderThickness="0" Name="ABox" Height="50" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" />
+
+                        </StackPanel>
+                    </Border>
+                    <Grid Grid.Row="2" Margin="50,10" HorizontalAlignment="Stretch" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <RadioButton Content="Degree" Grid.Column="0" IsChecked="{Binding Styler.Deg,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" GroupName="Mode" Checked="RadioButton_Checked"/>
+                        <RadioButton Content="Radian" Grid.Column="1" IsChecked="{Binding Styler.Rad,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" GroupName="Mode" Checked="RadioButton_Checked"/>
+                        <RadioButton Content="Gradiant" Grid.Column="2" IsChecked="{Binding Styler.Grad,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" GroupName="Mode" Checked="RadioButton_Checked"/>
+                    </Grid>
+                    <Grid Grid.Row="3" Margin="40,0,40,40" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
+                            <Border>
+                                <StackPanel>
+                                    <!--<TextBlock HorizontalAlignment="Center" Text="Algebra" FontSize="25" Foreground="Black"/>-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="X²" Background="{Binding Source={StaticResource Algebra}}" Name="Square" Click="Square_Click"/>
+                                        <Button Content="X³" Background="{Binding Source={StaticResource Algebra}}" Name="Cube" Click="Cube_Click"/>
+                                        <Button Content="Pow" Background="{Binding Source={StaticResource Algebra}}" Name="Power" Click="Power_Click"/>
+                                        <Button Content="√" Background="{Binding Source={StaticResource Algebra}}" Name="SQRT" Click="SQRT_Click"/>
+                                        <Button Content="³√" Background="{Binding Source={StaticResource Algebra}}" Name="CBRT" Click="CBRT_Click"/>
+                                        <Button Content="√()" Background="{Binding Source={StaticResource Algebra}}" Name="NRT" Click="NRT_Click"/>
+                                        <Button Content="Log" Background="{Binding Source={StaticResource Algebra}}" Name="LOG" Click="LOG_Click"/>
+                                        <Button Content="Ln" Background="{Binding Source={StaticResource Algebra}}" Name="LN" Click="LN_Click"/>
+                                        <Button Content="10^" Background="{Binding Source={StaticResource Algebra}}" Name="InvLog" Click="InvLog_Click"/>
+                                        <Button Content="e^" Background="{Binding Source={StaticResource Algebra}}" Name="InvLn" Click="InvLn_Click"/>
+                                        <Button Content="LCM" Background="{Binding Source={StaticResource Algebra}}" Name="LCM" Click="LCM_Click"/>
+                                        <Button Content="HCF" Background="{Binding Source={StaticResource Algebra}}" Name="HCF" Click="HCF_Click"/>
+                                        <Button Content="Mod" Background="{Binding Source={StaticResource Algebra}}" Name="Mod" Click="Mod_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                            <Border>
+                                <StackPanel>
+                                    <!--<TextBlock HorizontalAlignment="Center" Text="Algebra" FontSize="25" Foreground="Black"/>-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="%" Background="{Binding Source={StaticResource Algebra}}" Name="Percent" Click="Percent_Click"/>
+                                        <Button Content="π" Background="{Binding Source={StaticResource Algebra}}" Name="PI" Click="PI_Click"/>
+                                        <Button Content="Prime" Background="{Binding Source={StaticResource Algebra}}" Name="Prime" Click="Prime_Click"/>
+                                        <Button Background="{Binding Source={StaticResource Algebra}}" Name="ListOfPrime" Click="ListOfPrime_Click">
+                                            <Button.Content>
+                                                <StackPanel HorizontalAlignment="Center">
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                                        <TextBlock Text="List " FontSize="15"/>
+                                                        <TextBlock Text="of" FontSize="15"/>
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-3,0,0">
+                                                        <TextBlock Text="Prime" FontSize="15"/>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Button.Content>
+                                        </Button>
+                                        <Button Content="Inv" Background="{Binding Source={StaticResource Algebra}}" Name="Inv" Click="Inv_Click"/>
+                                        <Button Content="d/c" Background="{Binding Source={StaticResource Algebra}}" Name="Fractional" Click="Fractional_Click"/>
+                                        <Button Content="a(b/c)" Background="{Binding Source={StaticResource Algebra}}" Name="Mixed" Click="Mixed_Click"/>
+                                        <Button Content="Abs" Background="{Binding Source={StaticResource Algebra}}" Name="Abs" Click="Abs_Click"/>
+                                        <Border>
+                                            <StackPanel>
+                                                <!--<TextBlock HorizontalAlignment="Center" Text="Matrix" FontSize="25" Foreground="Black"/>-->
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Button Content="Mat" Background="{Binding Source={StaticResource Matrix}}" Name="Matrix" Click="Matrix_Click"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Border>
+
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <Border>
+                                <StackPanel>
+                                    <!--<TextBlock HorizontalAlignment="Center" Text="Base" FontSize="25" Foreground="Black"/>-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content=" &amp; " Background="{Binding Source={StaticResource Base}}" Name="AND" Click="AND_Click"/>
+                                        <Button Content=" | " Background="{Binding Source={StaticResource Base}}" Name="OR" Click="OR_Click"/>
+                                        <Button Content=" ^ " Background="{Binding Source={StaticResource Base}}" Name="XOR" Click="XOR_Click"/>
+                                        <Button Content=" ~ " Background="{Binding Source={StaticResource Base}}" Name="NOT" Click="NOT_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <Border>
+                                <StackPanel>
+                                    <!--<TextBlock HorizontalAlignment="Center" Text="Common" FontSize="25" Foreground="Black"/>-->
+                                    <StackPanel Orientation="Horizontal">
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+                            <Border>
+                                <StackPanel>
+                                    <!--<TextBlock HorizontalAlignment="Center" Text="Common" FontSize="25" Foreground="Black"/>-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Grid.Column="0" Background="{Binding Source={StaticResource Common}}" Name="Permutation" Click="Permutation_Click">
+                                            <Button.Content>
+                                                <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+                                                    <TextBlock Text="n" FontSize="13" VerticalAlignment="Top" Margin="0,-3,0,0"/>
+                                                    <TextBlock Text="P" FontSize="15" VerticalAlignment="Center" Margin="0,0,0,0"/>
+                                                    <TextBlock Text="r" FontSize="13" VerticalAlignment="Bottom" Margin="0,0,-3,0"/>
+                                                </StackPanel>
+                                            </Button.Content>
+                                        </Button>
+                                        <Button Grid.Column="1" Background="{Binding Source={StaticResource Common}}" Name="Combination" Click="Combination_Click">
+                                            <Button.Content>
+                                                <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+                                                    <TextBlock Text="n" FontSize="13" VerticalAlignment="Top" Margin="0,-3,0,0"/>
+                                                    <TextBlock Text="C" FontSize="15" VerticalAlignment="Center" Margin="0,0,0,0"/>
+                                                    <TextBlock Text="r" FontSize="13" VerticalAlignment="Bottom" Margin="0,0,-3,0"/>
+                                                </StackPanel>
+                                            </Button.Content>
+                                        </Button>
+                                        <Button Content="!" Background="{Binding Source={StaticResource Common}}" Name="Fact" Click="Fact_Click"/>
+                                        <Button Content="A" Background="{Binding Source={StaticResource Common}}" Name="A" Click="A_Click"/>
+                                        <Button Content="B" Background="{Binding Source={StaticResource Common}}" Name="B" Click="B_Click"/>
+                                        <Button Content="C" Background="{Binding Source={StaticResource Common}}" Name="C" Click="C_Click"/>
+                                        <Button Content="D" Background="{Binding Source={StaticResource Common}}" Name="D" Click="D_Click"/>
+                                        <Button Content="E" Background="{Binding Source={StaticResource Common}}" Name="E" Click="E_Click"/>
+                                        <Button Content="F" Background="{Binding Source={StaticResource Common}}" Name="F" Click="F_Click"/>
+                                        <Button Content="Add" Background="{Binding Source={StaticResource Common}}" Name="Add" Click="Add_Click"/>
+                                        <Button Content="Sub" Background="{Binding Source={StaticResource Common}}" Name="Sub" Click="Sub_Click"/>
+                                        <Button Content="Mul" Background="{Binding Source={StaticResource Common}}" Name="Mul" Click="Mul_Click"/>
+                                        <Button Content="," Background="{Binding Source={StaticResource Common}}" Name="Comma" Click="Comma_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center">
+                            <Border>
+                                <StackPanel>
+                                    <!--<TextBlock HorizontalAlignment="Center" Text="Complex Numbers" FontSize="25" Foreground="Black"/>-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Pol" Background="{Binding Source={StaticResource Complex}}" Name="Pol" Click="Pol_Click"/>
+                                        <Button Content="Rect" Background="{Binding Source={StaticResource Complex}}" Name="Rect" Click="Rect_Click"/>
+                                        <Button Content="a+bi" Background="{Binding Source={StaticResource Complex}}" Name="ComplexRect" Click="ComplexRect_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <Border>
+                                <StackPanel>
+                                    <!--<TextBlock HorizontalAlignment="Center" Text="Complex Numbers" FontSize="25" Foreground="Black"/>-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="r∠0" Background="{Binding Source={StaticResource Complex}}" Name="ComplexPol" Click="ComplexPol_Click"/>
+                                        <Button Content="∠" Background="{Binding Source={StaticResource Complex}}" Name="Ang" Click="Ang_Click"/>
+                                        <Button Content="i" Background="{Binding Source={StaticResource Complex}}" Name="Img" Click="Img_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <Border>
+                                <StackPanel>
+                                    <!--<TextBlock HorizontalAlignment="Center" Text="Statistics" FontSize="25" Foreground="Black"/>-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="SD" Background="{Binding Source={StaticResource Statistics}}" Name="SD" Click="SD_Click"/>
+                                        <Button Content="S-Var" Background="{Binding Source={StaticResource Statistics}}" Name="Variance" Click="Variance_Click"/>
+                                        <Button Content="x̄" Background="{Binding Source={StaticResource Statistics}}" Name="Mean" Click="Mean_Click"/>
+                                        <Button Background="{Binding Source={StaticResource Statistics}}" Name="MeanSquare" Content="x̄²" Click="MeanSquare_Click" />
+                                        <Button Content="Σx" Background="{Binding Source={StaticResource Statistics}}" Name="SumOfVar" Click="SumOfVar_Click"/>
+                                        <Button Background="{Binding Source={StaticResource Statistics}}" Content="Σx²" Name="SumOfSquareOfVar" Click="SumOfSquareOfVar_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <Button Content="CLR" Background="{Binding Source={StaticResource CLR}}" Name="Clr" Click="Clr_Click">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Foreground" Value="{ThemeResource ButtonForegroundThemeBrush}"/>
+                                        <Setter Property="BorderBrush" Value="{ThemeResource ButtonBorderThemeBrush}" />
+                                        <Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}" />
+                                        <Setter Property="Width" Value="75" />
+                                        <Setter Property="Height" Value="50" />
+                                        <Setter Property="HorizontalAlignment" Value="Left" />
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                        <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+                                        <Setter Property="FontWeight" Value="SemiBold" />
+                                        <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Grid>
+                                                        <VisualStateManager.VisualStateGroups>
+                                                            <VisualStateGroup x:Name="CommonStates">
+                                                                <VisualState x:Name="Normal" />
+                                                                <VisualState x:Name="PointerOver">
+                                                                    <Storyboard>
+                                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                                   Storyboard.TargetProperty="Background">
+                                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonPointerOverBackgroundThemeBrush1}" />
+                                                                        </ObjectAnimationUsingKeyFrames>
+                                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                   Storyboard.TargetProperty="Foreground">
+                                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonPointerOverForegroundThemeBrush}" />
+                                                                        </ObjectAnimationUsingKeyFrames>
+                                                                    </Storyboard>
+                                                                </VisualState>
+                                                                <VisualState x:Name="Pressed">
+                                                                    <Storyboard>
+                                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                                   Storyboard.TargetProperty="Background">
+                                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonPressedBackgroundThemeBrush1}" />
+                                                                        </ObjectAnimationUsingKeyFrames>
+                                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                   Storyboard.TargetProperty="Foreground">
+                                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonPressedForegroundThemeBrush}" />
+                                                                        </ObjectAnimationUsingKeyFrames>
+                                                                    </Storyboard>
+                                                                </VisualState>
+                                                                <VisualState x:Name="Disabled">
+                                                                    <Storyboard>
+                                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                                   Storyboard.TargetProperty="Background">
+                                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonDisabledBackgroundThemeBrush}" />
+                                                                        </ObjectAnimationUsingKeyFrames>
+                                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                                   Storyboard.TargetProperty="BorderBrush">
+                                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonDisabledBorderThemeBrush}" />
+                                                                        </ObjectAnimationUsingKeyFrames>
+                                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                   Storyboard.TargetProperty="Foreground">
+                                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonDisabledForegroundThemeBrush}" />
+                                                                        </ObjectAnimationUsingKeyFrames>
+                                                                    </Storyboard>
+                                                                </VisualState>
+                                                            </VisualStateGroup>
+                                                            <VisualStateGroup x:Name="FocusStates">
+                                                                <VisualState x:Name="Focused">
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Storyboard.TargetName="FocusVisualWhite"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="1"
+                                                     Duration="0" />
+                                                                        <DoubleAnimation Storyboard.TargetName="FocusVisualBlack"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="1"
+                                                     Duration="0" />
+                                                                    </Storyboard>
+                                                                </VisualState>
+                                                                <VisualState x:Name="Unfocused" />
+                                                                <VisualState x:Name="PointerFocused" />
+                                                            </VisualStateGroup>
+                                                        </VisualStateManager.VisualStateGroups>
+                                                        <Border x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Margin="3">
+                                                            <ContentPresenter x:Name="ContentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTransitions="{TemplateBinding ContentTransitions}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                          AutomationProperties.AccessibilityView="Raw"/>
+                                                        </Border>
+                                                        <Rectangle x:Name="FocusVisualWhite"
+                               IsHitTestVisible="False"
+                               Stroke="{ThemeResource FocusVisualWhiteStrokeThemeBrush}"
+                               StrokeEndLineCap="Square"
+                               StrokeDashArray="1,1"
+                               Opacity="0"
+                               StrokeDashOffset="1.5" />
+                                                        <Rectangle x:Name="FocusVisualBlack"
+                               IsHitTestVisible="False"
+                               Stroke="{ThemeResource FocusVisualBlackStrokeThemeBrush}"
+                               StrokeEndLineCap="Square"
+                               StrokeDashArray="1,1"
+                               Opacity="0"
+                               StrokeDashOffset="0.5" />
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center">
+                            <Border>
+                                <StackPanel>
+                                    <!--<TextBlock HorizontalAlignment="Center" Text="Trigonometry" FontSize="25" Foreground="Black"/>-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="hyp" Background="{Binding Source={StaticResource Trigonometry}}" Name="Hyperbola" Click="Hyperbola_Click"/>
+                                        <Button Content="Sin" Background="{Binding Source={StaticResource Trigonometry}}" Name="Sin" Click="Sin_Click"/>
+                                        <Button Content="Cos" Background="{Binding Source={StaticResource Trigonometry}}" Name="Cos" Click="Cos_Click"/>
+                                        <Button Content="Tan" Background="{Binding Source={StaticResource Trigonometry}}" Name="Tan" Click="Tan_Click"/>
+                                        <Button Content="ASin" Background="{Binding Source={StaticResource Trigonometry}}" Name="ASin" Click="ASin_Click"/>
+                                        <Button Content="ACos" Background="{Binding Source={StaticResource Trigonometry}}" Name="ACos" Click="ACos_Click"/>
+                                        <Button Content="ATan" Background="{Binding Source={StaticResource Trigonometry}}" Name="ATan" Click="ATan_Click"/>
+                                        <Button Content="°" Background="{Binding Source={StaticResource Trigonometry}}" Name="Deg" Click="Deg_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <Border>
+                                <StackPanel>
+                                    <!--<TextBlock HorizontalAlignment="Center" Text="Common" FontSize="25" Foreground="Black"/>-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="(" Background="{Binding Source={StaticResource Other}}" Name="OpenBrace" Click="OpenBrace_Click"/>
+                                        <Button Content=")" Background="{Binding Source={StaticResource Other}}" Name="CloseBrace" Click="CloseBrace_Click"/>
+                                        <Button Content="Angle" Background="{Binding Source={StaticResource Other}}" Name="PolyAng" Click="PolyAng_Click"/>
+                                        <Button Content="Prev" Background="{Binding Source={StaticResource Other}}" Name="Prev" Click="Prev_Click"/>
+                                        <Button Content="Next" Background="{Binding Source={StaticResource Other}}" Name="Next" Click="Next_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Center">
+                            <Border>
+                                <StackPanel>
+                                    <!--<TextBlock HorizontalAlignment="Center" Text="Common" FontSize="25" Foreground="Black"/>-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="1" Background="{Binding Source={StaticResource Custom}}" Name="One" Click="One_Click"/>
+                                        <Button Content="2" Background="{Binding Source={StaticResource Custom}}" Name="Two" Click="Two_Click"/>
+                                        <Button Content="3" Background="{Binding Source={StaticResource Custom}}" Name="Three" Click="Three_Click"/>
+                                        <Button Content="4" Background="{Binding Source={StaticResource Custom}}" Name="Four" Click="Four_Click"/>
+                                        <Button Content="5" Background="{Binding Source={StaticResource Custom}}" Name="Five" Click="Five_Click"/>
+                                        <Button Content="M" Background="{Binding Source={StaticResource Other}}" Name="Mega" Click="Mega_Click"/>
+                                        <Button Content="G" Background="{Binding Source={StaticResource Other}}" Name="Giga" Click="Giga_Click"/>
+                                        <Button Content="T" Background="{Binding Source={StaticResource Other}}" Name="Tera" Click="Tera_Click"/>
+                                        <Button Content="μ" Background="{Binding Source={StaticResource Other}}" Name="Micro" Click="Micro_Click"/>
+                                        <Button Content="-" Background="{Binding Source={StaticResource Other}}" Name="Subtract" Click="Subtract_Click"/>
+                                        <Button Content="+" Background="{Binding Source={StaticResource Other}}" Name="Adder" Click="Adder_Click"/>
+                                        <Button Content="." Background="{Binding Source={StaticResource Other}}" Name="Dot" Click="Dot_Click"/>
+                                        <Button Background="{Binding Source={StaticResource Other}}" Name="ListVariables" Click="ListVariables_Click">
+                                            <Button.Content>
+                                                <StackPanel HorizontalAlignment="Center">
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                                        <TextBlock Text="List" FontSize="15"/>
+                                                        <TextBlock Text=" of" FontSize="15"/>
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-3,0,0">
+                                                        <TextBlock Text="var" FontSize="15"/>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Button.Content>
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="6" HorizontalAlignment="Center">
+                            <Border>
+                                <StackPanel>
+                                    <!--<TextBlock HorizontalAlignment="Center" Text="Common" FontSize="25" Foreground="Black"/>-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="6" Background="{Binding Source={StaticResource Custom}}" Name="Six" Click="Six_Click"/>
+                                        <Button Content="7" Background="{Binding Source={StaticResource Custom}}" Name="Seven" Click="Seven_Click"/>
+                                        <Button Content="8" Background="{Binding Source={StaticResource Custom}}" Name="Eight" Click="Eight_Click"/>
+                                        <Button Content="9" Background="{Binding Source={StaticResource Custom}}" Name="Nine" Click="Nine_Click"/>
+                                        <Button Content="0" Background="{Binding Source={StaticResource Custom}}" Name="Zero" Click="Zero_Click"/>
+                                        <Button Content="m" Background="{Binding Source={StaticResource Other}}" Name="Milli" Click="Milli_Click"/>
+                                        <Button Content="k" Background="{Binding Source={StaticResource Other}}" Name="Kilo" Click="Kilo_Click"/>
+                                        <Button Content="f" Background="{Binding Source={StaticResource Other}}" Name="Femto" Click="Femto_Click"/>
+                                        <Button Content="p" Background="{Binding Source={StaticResource Other}}" Name="Pico" Click="Pico_Click"/>
+                                        <Button Content="n" Background="{Binding Source={StaticResource Other}}" Name="Nano" Click="Nano_Click"/>
+                                        <Button Content="*" Background="{Binding Source={StaticResource Other}}" Name="Multi" Click="Multi_Click"/>
+                                        <Button Content="/" Background="{Binding Source={StaticResource Other}}" Name="Div" Click="Div_Click"/>
+                                        <Button Content="=" Background="{Binding Source={StaticResource Other}}" Name="Equal" Click="Equal_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+            <Grid Grid.Row="1" Name="Algebra" Visibility="{Binding Styler.Algebra,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVisible}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Border BorderBrush="Black" BorderThickness="0,1,0,0" Grid.Row="0">
+                    <Grid Margin="35,10,35,10"  >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Foreground="Black" Text="Series Progressions:" Grid.Row="0" />
+                        <ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Margin="10,5,10,5" Name="ApOrGporHp">
+                            <ComboBoxItem Content="A.P" IsSelected="True"/>
+                            <ComboBoxItem Content="G.P" />
+                            <ComboBoxItem Content="H.P" />
+                        </ComboBox>
+                        <TextBlock Foreground="Black" Text="First Number:" Grid.Column="0" Grid.Row="1" Margin="0,5,0,5"/>
+                        <TextBox Margin="10,5,10,5" Grid.Column="1" Grid.Row="1" Name="AP1" KeyDown="InputConst_KeyDown" />
+                        <TextBlock Text="Difference/Ratio:" Grid.Column="0" Grid.Row="2" Margin="0,5,0,5"/>
+                        <TextBox Margin="10,5,10,5" Grid.Column="1" Grid.Row="2" Name="AP2" KeyDown="InputConst_KeyDown"/>
+                        <TextBlock Text="Last Number:" Grid.Column="0" Grid.Row="3" Margin="0,5,0,5"/>
+                        <TextBox Margin="10,5,10,5" Grid.Column="1" Grid.Row="3" Name="AP3" KeyDown="InputConst_KeyDown"/>
+                        <ComboBox Grid.Column="0" Grid.Row="4" Margin="0,10,0,10" Height="30" Name="APSelection">
+                            <ComboBoxItem Content="Sum" IsSelected="True"/>
+                            <ComboBoxItem Content="Sum-Difference" />
+                        </ComboBox>
+                        <TextBlock Text="Answer" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Margin="10,0,40,0" Name="OutAP"/>
+                        <Button Content="Solve" Grid.Column="1" Background="{Binding Source={StaticResource Common}}" Grid.Row="4" HorizontalAlignment="Right" Margin="10,5,10,5" Name="APResult" Click="APResult_Click"/>
+                    </Grid>
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="0,1" Grid.Row="1">
+                    <Grid Margin="35,10,35,10" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Equations:" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Width="200"/>
+                        <ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="auto" SelectionChanged="ComboBox_SelectionChanged" Name="PolEqu">
+                            <ComboBoxItem Content="Two Equations" IsSelected="True"/>
+                            <ComboBoxItem Content="Three Equations" />
+                        </ComboBox>
+                        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="a1:" Grid.Column="0" Grid.Row="0" Margin="0,5,0,5"/>
+                            <TextBox Margin="10,5,10,5" Grid.Column="1" Grid.Row="0" Name="AT1" KeyDown="AT1_KeyDown"/>
+                            <TextBlock Text="a2:" Grid.Column="2" Grid.Row="0" Margin="0,5,0,5"/>
+                            <TextBox Margin="10,5,10,5" Grid.Column="3" Grid.Row="0" Name="AT2" KeyDown="AT1_KeyDown"/>
+                            <TextBlock Text="a3:" Grid.Column="4" Grid.Row="0" Margin="0,5,0,5" Visibility="{Binding Styler.IsVisible,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisible}}"/>
+                            <TextBox Margin="10,5,10,5" Grid.Column="5" Grid.Row="0" Name="AT3" Visibility="{Binding Styler.IsVisible,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisible}}" KeyDown="AT1_KeyDown"/>
+                            <TextBlock Text="a:" Grid.Column="6" Grid.Row="0" Margin="0,5,0,5"/>
+                            <TextBox Margin="10,5,10,5" Grid.Column="7" Grid.Row="0" Name="AT0" KeyDown="AT1_KeyDown"/>
+                            <TextBlock Text="b1:" Grid.Column="0" Grid.Row="1" Margin="0,5,0,5"/>
+                            <TextBox Margin="10,5,10,5" Grid.Column="1" Grid.Row="1" Name="BT1" KeyDown="AT1_KeyDown"/>
+                            <TextBlock Text="b2:" Grid.Column="2" Grid.Row="1" Margin="0,5,0,5"/>
+                            <TextBox Margin="10,5,10,5" Grid.Column="3" Grid.Row="1" Name="BT2" KeyDown="AT1_KeyDown"/>
+                            <TextBlock Text="b3:" Grid.Column="4" Grid.Row="1" Margin="0,5,0,5" Visibility="{Binding Styler.IsVisible,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisible}}"/>
+                            <TextBox Margin="10,5,10,5" Grid.Column="5" Grid.Row="1" Name="BT3" Visibility="{Binding Styler.IsVisible,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisible}}" KeyDown="AT1_KeyDown"/>
+                            <TextBlock Text="b:" Grid.Column="6" Grid.Row="1" Margin="0,5,0,5"/>
+                            <TextBox Margin="10,5,10,5" Grid.Column="7" Grid.Row="1" Name="BT0" KeyDown="AT1_KeyDown"/>
+                            <TextBlock Text="c1:" Grid.Column="0" Grid.Row="2" Margin="0,5,0,5" Visibility="{Binding Styler.IsVisible,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisible}}"/>
+                            <TextBox Margin="10,5,10,5" Grid.Column="1" Grid.Row="2" Name="CT1" KeyDown="AT1_KeyDown" Visibility="{Binding Styler.IsVisible,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisible}}"/>
+                            <TextBlock Text="c2:" Grid.Column="2" Grid.Row="2" Margin="0,5,0,5" Visibility="{Binding Styler.IsVisible,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisible}}"/>
+                            <TextBox Margin="10,5,10,5" Grid.Column="3" Grid.Row="2" Name="CT2" KeyDown="AT1_KeyDown" Visibility="{Binding Styler.IsVisible,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisible}}"/>
+                            <TextBlock Text="c3:" Grid.Column="4" Grid.Row="2" Margin="0,5,0,5" Visibility="{Binding Styler.IsVisible,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisible}}"/>
+                            <TextBox Margin="10,5,10,5" Grid.Column="5" Grid.Row="2" Name="CT3" Visibility="{Binding Styler.IsVisible,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisible}}" KeyDown="AT1_KeyDown"/>
+                            <TextBlock Text="c:" Grid.Column="6" Grid.Row="2" Margin="0,5,0,5" Visibility="{Binding Styler.IsVisible,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisible}}"/>
+                            <TextBox Margin="10,5,10,5" Grid.Column="7" Grid.Row="2" Name="CT0" KeyDown="AT1_KeyDown" Visibility="{Binding Styler.IsVisible,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisible}}"/>
+                            <TextBlock Text="X" Grid.Column="0" Grid.ColumnSpan="8" Grid.Row="3" VerticalAlignment="Center" Name="OutTX"/>
+                            <TextBlock Text="Y" Grid.Column="0" Grid.ColumnSpan="8" Grid.Row="4" VerticalAlignment="Center" Name="OutTY"/>
+                            <TextBlock Text="Z" Grid.Column="0" Grid.ColumnSpan="8" Grid.Row="5" VerticalAlignment="Center" Name="OutTZ" Visibility="{Binding Styler.IsVisible,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisible}}"/>
+                        </Grid>
+                        <Button Content="Solve" Background="{Binding Source={StaticResource Common}}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="10,5,10,5" Name="TwoEquationSolve" Click="TwoEquationSolve_Click"/>
+                    </Grid>
+                </Border>
+            </Grid>
+            <Grid Grid.Row="1" Name="Others" HorizontalAlignment="Stretch" Visibility="{Binding Styler.Others,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVisible}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Border BorderBrush="Black" BorderThickness="0,1,0,0" Grid.Row="0">
+                    <Grid Margin="35,10,35,10" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="1.3*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Constants:" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="0,5" Foreground="Black"/>
+                        <TextBox TextChanged="InputConst_TextChanged" Height="30" Margin="0,5,1,5" Grid.Row="1" Grid.Column="0" Name="InputConst" KeyDown="InputConst_KeyDown" />
+                        <ComboBox SelectionChanged="ConstantListBox_SelectionChanged"  VerticalContentAlignment="Center" Width="auto" Margin="1,5,0,5" Height="30" Grid.Row="1" Grid.Column="1" Name="ConstantListBox"></ComboBox>
+                        <TextBox Margin="0,5,1,5" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" IsReadOnly="True" Name="ListValue"/>
+                        <TextBox Margin="1,5,0,5" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" IsReadOnly="True" Name="UnitValue"/>
+                    </Grid>
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="0,1,0,1" Grid.Row="1">
+                    <Grid Margin="35,10,35,10" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Conversion:" Grid.Column="0" Grid.Row="0" Margin="5" VerticalAlignment="Center"/>
+                        <ComboBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Name="Convert" SelectionChanged="Convert_SelectionChanged">
+                            <ComboBoxItem Content="Angle" IsSelected="True"/>
+                            <ComboBoxItem Content="Area" />
+                            <ComboBoxItem Content="Base" />
+                            <ComboBoxItem Content="Energy" />
+                            <ComboBoxItem Content="Length" />
+                            <ComboBoxItem Content="Power" />
+                            <ComboBoxItem Content="Pressure" />
+                            <ComboBoxItem Content="Temperature" />
+                            <ComboBoxItem Content="Time" />
+                            <ComboBoxItem Content="Velocity" />
+                            <ComboBoxItem Content="Volume" />
+                            <ComboBoxItem Content="Weight/Mass" />
+                        </ComboBox>
+                        <TextBox Margin="10,5,10,5" Grid.Column="0" FontSize="15" Grid.Row="2" Name="ConvertText" TextChanged="ConvertText_TextChanged" KeyDown="InputConst_KeyDown"></TextBox>
+                        <ComboBox Grid.Column="1" Grid.Row="2" Name="from" ItemsSource="{Binding Styler.ItemSource,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="0,5,10,5" SelectionChanged="from_SelectionChanged"></ComboBox>
+                        <TextBlock FontSize="15" Text="To" VerticalAlignment="Center" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center">
+                        </TextBlock>
+                        <TextBox Grid.Column="0" Grid.Row="4" IsReadOnly="True" Margin="10,5,10,5" Text="{Binding Styler.Result,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        <ComboBox Grid.Row="4" Grid.Column="1" Name="to" ItemsSource="{Binding Styler.ItemSource,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="0,5,10,5" SelectionChanged="to_SelectionChanged"></ComboBox>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+        <Grid VerticalAlignment="Center" Visibility="{Binding Styler.IsList,Converter={StaticResource BoolToVisible},UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="List for" Grid.Row="0" Grid.Column="0" Padding="10,0"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" SelectionChanged="MatOrStat_SelectionChanged" Name="MatOrStat">
+                <ComboBoxItem Content="Matrix" IsSelected="True"/>
+                <ComboBoxItem Content="Statistics" />
+            </ComboBox>
+            <ComboBox Grid.Column="2" Name="ListIndex" SelectionChanged="ListIndex_SelectionChanged">
+                <ComboBoxItem Content="A" IsSelected="True" />
+                <ComboBoxItem Content="B" />
+                <ComboBoxItem Content="C" />
+                <ComboBoxItem Content="D" />
+                <ComboBoxItem Content="E" />
+                <ComboBoxItem Content="F" />
+            </ComboBox>
+            <Grid Grid.Row="0" Grid.Column="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="m" Margin="10,0" Visibility="{Binding Styler.IsMat,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisible}}"/>
+                    <TextBox Text="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Name="m" KeyDown="m_KeyDown" Visibility="{Binding Styler.IsMat,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisible}}" Margin="10,0"></TextBox>
+                    <TextBlock Text="n" Margin="10,0" Visibility="{Binding Styler.IsMat,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisible}}"/>
+                    <TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="0" Margin="10,0"  Name="n" KeyDown="m_KeyDown" Visibility="{Binding Styler.IsMat,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisible}}"></TextBox>
+                    <TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="0" Padding="10,0" Name="Stats" KeyDown="m_KeyDown" Visibility="{Binding Styler.IsStat,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisible}}" HorizontalAlignment="Stretch"></TextBox>
+                </StackPanel>
+                <Button Content="Go" Grid.Column="1" Name="Go" Click="Go_Click" Background="{Binding Source={StaticResource Common}}"/>
+                <Button Content="Back" Grid.Column="2" Name="Back" Click="Back_Click" Background="{Binding Source={StaticResource Common}}"/>
+                <Button Content="Done" Grid.Column="3" Name="Done" Click="Done_Click" Background="{Binding Source={StaticResource Common}}" IsEnabled="{Binding Styler.IsEnable,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+            </Grid>
+            <ScrollViewer Grid.Row="1" Grid.ColumnSpan="4" Width="1000" Height="600" VerticalAlignment="Center" >
+                <Grid Name="GetFields" Margin="25" >
+
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+
+        <Grid Visibility="{Binding Styler.IsPopUp,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisible}}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+            <ScrollViewer Width="1000" Height="600" >
+                <Grid Name="Grid1" VerticalAlignment="Center" HorizontalAlignment="Center"></Grid>
+            </ScrollViewer>
+        </Grid>
+
+    </Grid>
+</Page>

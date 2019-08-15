@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Status";
+}
+@model Models.Class1
+<h2>Status</h2>
+
+<form id="form1">
+    <div class="table-responsive grid1">
+
+        @{
+            List<string> list = new List<string>() { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N" };
+        }
+        @Html.Partial("~/Views/Shared/Grid1.cshtml", Model.List1)
+    </div>
+</form>

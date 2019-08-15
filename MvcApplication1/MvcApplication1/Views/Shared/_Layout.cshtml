@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    <link href="~/Content/jquery.dataTables.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery.dataTables.js"></script>
+    
+</head>
+ 
+<body style="background:url(/Images/Hydrangeas.jpg);" >
+    <div class="container body-content">
+        <div class="dropdown">
+            <div class="btn-group" style="width: 100%; background-color: #428bca; border-color: #357ebd;">
+                <a class="btn btn-primary" id='@(Url.Action("DashBoard")+"")' onclick="redirect($(this))">DashBoard</a>
+                <a class="btn btn-primary" id='@(Url.Action("LandManagement")+"")' onclick="redirect($(this))">Land Management</a>
+                <a class="btn btn-primary" id='@(Url.Action("PetManagement")+"")' onclick="redirect($(this))">Pet Management</a>
+                <a class="btn btn-primary" id='@(Url.Action("Resources")+"")' onclick="redirect($(this))">Resources</a>
+                <a class="btn btn-primary" id='@(Url.Action("Links")+"")' onclick="redirect($(this))">Links</a>
+                <a class="btn btn-primary" id='@(Url.Action("Status")+"")' onclick="redirect($(this))">Status</a>
+            </div>
+        </div>
+        <div id="renderBody">@RenderBody()</div>
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    <script>
+        function redirect(tg) {
+            tg.parent().children('a').removeClass('active')
+            tg.addClass('active');
+            $.ajax({
+                url: tg.attr('id'),
+                async: true
+            }).done(function (response) {
+                $('#renderBody').html(response)
+            });
+        }
+
+        $(function () {
+            if ('@(Session["URL"])' != '') {
+                redirect($('.dropdown .btn-group a[class="btn btn-primary"][id="@(Session["URL"])"]'))
+
+            }
+            else {
+                redirect($('.dropdown .btn-group a[class="btn btn-primary"][id="@Request.Url.AbsolutePath"]'))
+            }
+        })
+
+    </script>
+    
+</body>
+</html>
