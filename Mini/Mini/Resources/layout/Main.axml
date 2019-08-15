@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+  <LinearLayout
+      style="@style/layout"
+      android:layout_height="wrap_content">
+    <LinearLayout
+        style="@style/layoutTextbox">
+      <LinearLayout
+          style="@style/layoutRow">
+        <EditText
+            android:longClickable="false"
+            android:id="@+id/QText"
+            style="@style/textbox" />
+      </LinearLayout>
+      <LinearLayout
+          style="@style/layoutRow">
+        <LinearLayout
+            style="@style/layoutColumn"
+            android:layout_weight="0.8">
+          <TextView
+              android:id="@+id/AText"
+              style="@style/textbox" />
+        </LinearLayout>
+        <LinearLayout
+            style="@style/layoutColumn"
+            android:layout_weight="0.25">
+          <Button
+              android:text="←"
+              android:id="@+id/BackSpace"
+              style="@style/buttons" />
+        </LinearLayout>
+        <LinearLayout
+            style="@style/layoutColumn"
+            android:layout_weight="0.25">
+          <Button
+              android:text="↑"
+              android:id="@+id/Up"
+              style="@style/buttons" />
+        </LinearLayout>
+        <LinearLayout
+            style="@style/layoutColumn"
+            android:layout_weight="0.25">
+          <Button
+              android:text="↓"
+              android:id="@+id/Down"
+              style="@style/buttons" />
+        </LinearLayout>
+      </LinearLayout>
+      <RadioGroup
+          style="@style/radioButtonGroup">
+        <RadioButton
+            style="@style/radioButton"
+            android:checked="true"
+            android:text="Deg"
+            android:id="@+id/Degree" />
+        <RadioButton
+            style="@style/radioButton"
+            android:text="Rad"
+            android:id="@+id/Radient" />
+        <RadioButton
+            style="@style/radioButton"
+            android:text="Grad"
+            android:id="@+id/Gradient" />
+        <Button
+            android:text="Clr"
+            style="@style/button"
+            android:id="@+id/Clr" />
+      </RadioGroup>
+    </LinearLayout>
+    <ScrollView
+        style="@style/layout">
+      <LinearLayout
+          style="@style/layoutButton">
+        <LinearLayout
+            style="@style/layoutRow">
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="|"
+                style="@style/textView" />
+            <Button
+                android:text="&amp;"
+                style="@style/buttons"
+                android:id="@+id/AND" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="~"
+                style="@style/textView" />
+            <Button
+                android:text="^"
+                style="@style/buttons"
+                android:id="@+id/XOR" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="D"
+                style="@style/textView" />
+            <Button
+                android:text="A"
+                style="@style/buttons"
+                android:id="@+id/A" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="E"
+                style="@style/textView" />
+            <Button
+                android:text="B"
+                style="@style/buttons"
+                android:id="@+id/B" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="F"
+                style="@style/textView" />
+            <Button
+                android:text="C"
+                style="@style/buttons"
+                android:id="@+id/C" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                style="@style/textView"
+                android:text="!" />
+            <Button
+                android:text="Inv"
+                style="@style/buttons"
+                android:id="@+id/Inv" />
+          </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            style="@style/layoutRow">
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="x²"
+                style="@style/textView" />
+            <Button
+                android:text="√"
+                style="@style/buttons"
+                android:id="@+id/SQRT" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="x³"
+                style="@style/textView" />
+            <Button
+                android:text="³√"
+                style="@style/buttons"
+                android:id="@+id/CBRT" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="Xⁿ"
+                style="@style/textView" />
+            <Button
+                android:text="x√"
+                style="@style/buttons"
+                android:id="@+id/NRT" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="10^"
+                style="@style/textView" />
+            <Button
+                android:text="Log"
+                style="@style/buttons"
+                android:id="@+id/LOG" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="e^"
+                style="@style/textView" />
+            <Button
+                android:text="Ln"
+                style="@style/buttons"
+                android:id="@+id/LN" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="nCr"
+                style="@style/textView" />
+            <Button
+                style="@style/buttons"
+                android:text="nPr"
+                android:id="@+id/Permutation" />
+          </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            style="@style/layoutRow">
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="Pol"
+                style="@style/textView" />
+            <Button
+                android:text="r∠θ"
+                style="@style/buttons"
+                android:id="@+id/RAngle" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="Rect"
+                style="@style/textView" />
+            <Button
+                android:text="a+ib"
+                style="@style/buttons"
+                android:id="@+id/APolar" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="∠"
+                style="@style/textView" />
+            <Button
+                android:text="i"
+                style="@style/buttons"
+                android:id="@+id/i" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="Hcf"
+                style="@style/textView" />
+            <Button
+                android:text="Lcm"
+                style="@style/buttons"
+                android:id="@+id/LCM" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="Mod"
+                style="@style/textView" />
+            <Button
+                android:text="Abs"
+                style="@style/buttons"
+                android:id="@+id/Abs" />
+          </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            style="@style/layoutRow">
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="ASin"
+                style="@style/textView" />
+            <Button
+                android:text="Sin"
+                style="@style/buttons"
+                android:id="@+id/Sin" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="ACos"
+                style="@style/textView" />
+            <Button
+                android:text="Cos"
+                style="@style/buttons"
+                android:id="@+id/Cos" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="ATan"
+                style="@style/textView" />
+            <Button
+                android:text="Tan"
+                style="@style/buttons"
+                android:id="@+id/Tan" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="ASinh"
+                style="@style/textView" />
+            <Button
+                android:text="Sinh"
+                style="@style/buttons"
+                android:id="@+id/Sinh" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="ACosh"
+                style="@style/textView" />
+            <Button
+                android:text="Cosh"
+                style="@style/buttons"
+                android:id="@+id/Cosh" />
+          </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            style="@style/layoutRow">
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="ATanh"
+                style="@style/textView" />
+            <Button
+                android:text="Tanh"
+                style="@style/buttons"
+                android:id="@+id/Tanh" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="Add"
+                style="@style/textView" />
+            <Button
+                android:text="Mat"
+                style="@style/buttons"
+                android:id="@+id/Mat" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="Sub"
+                style="@style/textView" />
+            <Button
+                android:text="SD"
+                style="@style/buttons"
+                android:id="@+id/SD" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="Mul"
+                style="@style/textView" />
+            <Button
+                android:text="Var"
+                style="@style/buttons"
+                android:id="@+id/Var" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                style="@style/textView" />
+            <Button
+                android:text="More"
+                style="@style/buttons"
+                android:id="@+id/Others" />
+          </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            style="@style/layoutRow">
+          <Button
+              style="@style/button"
+              android:text="Prime"
+              android:id="@+id/Prime" />
+          <Button
+              android:text="List of prime"
+              style="@style/button"
+              android:id="@+id/ListOfPrime" />
+        </LinearLayout>
+        <LinearLayout
+            style="@style/layoutRow">
+          <Button
+              android:text="Angle"
+              style="@style/button"
+              android:id="@+id/Angle" />
+          <Button
+              android:text="π"
+              style="@style/button"
+              android:id="@+id/Pi" />
+          <Button
+              android:text=","
+              style="@style/button"
+              android:id="@+id/Comma" />
+          <Button
+              android:text="%"
+              style="@style/button"
+              android:id="@+id/Percent" />
+        </LinearLayout>
+        <LinearLayout
+            style="@style/layoutRow">
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="M"
+                style="@style/textView" />
+            <Button
+                android:text="7"
+                style="@style/buttons"
+                android:id="@+id/Seven" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="G"
+                style="@style/textView" />
+            <Button
+                android:text="8"
+                style="@style/buttons"
+                android:id="@+id/Eight" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="T"
+                style="@style/textView" />
+            <Button
+                android:text="9"
+                style="@style/buttons"
+                android:id="@+id/Nine" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                style="@style/textView"
+                android:text="(" />
+            <Button
+                android:text="x̄"
+                style="@style/buttons"
+                android:id="@+id/XBar" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text=")"
+                style="@style/textView" />
+            <Button
+                android:text="x̄²"
+                style="@style/buttons"
+                android:id="@+id/XBarSqr" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                style="@style/textView"
+                android:text="List" />
+            <Button
+                android:text="Σx"
+                style="@style/buttons"
+                android:id="@+id/Sum" />
+          </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            style="@style/layoutRow">
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="μ"
+                style="@style/textView" />
+            <Button
+                android:text="4"
+                style="@style/buttons"
+                android:id="@+id/Four" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="m"
+                style="@style/textView" />
+            <Button
+                android:text="5"
+                style="@style/buttons"
+                android:id="@+id/Five" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="k"
+                style="@style/textView" />
+            <Button
+                android:text="6"
+                style="@style/buttons"
+                android:id="@+id/Six" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="*"
+                style="@style/textView" />
+            <Button
+                android:text="-"
+                style="@style/buttons"
+                android:id="@+id/Minus" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                style="@style/textView"
+                android:text="/" />
+            <Button
+                android:text="+"
+                style="@style/buttons"
+                android:id="@+id/Add" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                style="@style/textView" />
+            <Button
+                android:text="Σx²"
+                style="@style/buttons"
+                android:id="@+id/SumOfSquare" />
+          </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            style="@style/layoutRow">
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="f"
+                style="@style/textView" />
+            <Button
+                android:text="1"
+                style="@style/buttons"
+                android:id="@+id/One" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="p"
+                style="@style/textView" />
+            <Button
+                android:text="2"
+                style="@style/buttons"
+                android:id="@+id/Two" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                android:text="n"
+                style="@style/textView" />
+            <Button
+                android:text="3"
+                style="@style/buttons"
+                android:id="@+id/Three" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                style="@style/textView" />
+            <Button
+                android:text="0"
+                style="@style/buttons"
+                android:id="@+id/Zero" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                style="@style/textView" />
+            <Button
+                android:text="."
+                style="@style/buttons"
+                android:id="@+id/Decimal" />
+          </LinearLayout>
+          <LinearLayout
+              style="@style/layoutColumn">
+            <TextView
+                style="@style/textView" />
+            <Button
+                android:text="="
+                style="@style/buttons"
+                android:id="@+id/Solve" />
+          </LinearLayout>
+        </LinearLayout>
+      </LinearLayout>
+    </ScrollView>
+  </LinearLayout>
+</LinearLayout>
