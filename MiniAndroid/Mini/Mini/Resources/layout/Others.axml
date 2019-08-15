@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/layout">
+    <LinearLayout
+        style="@style/layout"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            style="@style/layoutTextbox">
+            <Button
+                android:layout_margin="5dp"
+                android:layout_gravity="right"
+                android:id="@+id/BackFromOthers"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Back" />
+        </LinearLayout>
+    </LinearLayout>
+    <ScrollView
+        style="@style/layout">
+        <LinearLayout
+            style="@style/layoutButton">
+            <LinearLayout
+                style="@style/layoutButton">
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <LinearLayout
+                        style="@style/layoutColumn">
+                        <TextView
+                            android:text="Constants"
+                            style="@style/header" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <EditText
+                        android:id="@+id/Q_Constant"
+                        style="@style/othersTextBox"
+                        android:inputType="number|numberSigned|numberDecimal" />
+                    <Spinner
+                        android:id="@+id/ConstantSpinner"
+                        style="@style/dropDown" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <TextView
+                        android:id="@+id/ToConstant"
+                        android:gravity="start"
+                        style="@style/othersTextView" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                style="@style/layoutButton">
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <LinearLayout
+                        style="@style/layoutColumn">
+                        <TextView
+                            android:text="A.P."
+                            style="@style/header" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <TextView
+                        android:text="First Number:"
+                        style="@style/othersTextView" />
+                    <EditText
+                        android:id="@+id/First_AP"
+                        style="@style/othersTextBox"
+                        android:inputType="number|numberDecimal" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <TextView
+                        android:text="Difference:"
+                        style="@style/othersTextView" />
+                    <EditText
+                        android:id="@+id/Diff_AP"
+                        style="@style/othersTextBox"
+                        android:inputType="number|numberDecimal" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <TextView
+                        android:text="Last Number:"
+                        style="@style/othersTextView" />
+                    <EditText
+                        android:id="@+id/Last_AP"
+                        style="@style/othersTextBox"
+                        android:inputType="number|numberDecimal" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <TextView
+                        android:text="Ans:"
+                        style="@style/othersTextView" />
+                    <TextView
+                        android:id="@+id/AnsAp"
+                        style="@style/othersTextView" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <Spinner
+                        android:id="@+id/APSpinner"
+                        style="@style/dropDown" />
+                    <Button
+                        android:id="@+id/APSolve"
+                        android:text="Solve"
+                        style="@style/button" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                style="@style/layoutButton">
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <LinearLayout
+                        style="@style/layoutColumn">
+                        <TextView
+                            android:text="G.P."
+                            style="@style/header" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <TextView
+                        android:text="First Number:"
+                        style="@style/othersTextView" />
+                    <EditText
+                        android:id="@+id/First_GP"
+                        style="@style/othersTextBox"
+                        android:inputType="number|numberDecimal" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <TextView
+                        android:text="Ratio:"
+                        style="@style/othersTextView" />
+                    <EditText
+                        android:id="@+id/Rat_GP"
+                        style="@style/othersTextBox"
+                        android:inputType="number|numberDecimal" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <TextView
+                        android:text="Last Number:"
+                        style="@style/othersTextView" />
+                    <EditText
+                        android:id="@+id/Last_GP"
+                        style="@style/othersTextBox"
+                        android:inputType="number|numberDecimal" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <TextView
+                        android:text="Ans:"
+                        style="@style/othersTextView" />
+                    <TextView
+                        android:id="@+id/AnsGp"
+                        style="@style/othersTextView" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <Spinner
+                        android:id="@+id/GPSpinner"
+                        style="@style/dropDown" />
+                    <Button
+                        android:id="@+id/GPSolve"
+                        android:text="Solve"
+                        style="@style/button" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                style="@style/layoutButton">
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <LinearLayout
+                        style="@style/layoutColumn">
+                        <TextView
+                            android:text="H.P."
+                            style="@style/header" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <TextView
+                        android:text="First Number:"
+                        style="@style/othersTextView" />
+                    <EditText
+                        android:id="@+id/First_HP"
+                        style="@style/othersTextBox"
+                        android:inputType="number|numberDecimal" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <TextView
+                        android:text="Difference:"
+                        style="@style/othersTextView" />
+                    <EditText
+                        android:id="@+id/Diff_HP"
+                        style="@style/othersTextBox"
+                        android:inputType="number|numberDecimal" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <TextView
+                        android:text="Last Number:"
+                        style="@style/othersTextView" />
+                    <EditText
+                        android:id="@+id/Last_HP"
+                        style="@style/othersTextBox"
+                        android:inputType="number|numberDecimal" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <TextView
+                        android:text="Ans:"
+                        style="@style/othersTextView" />
+                    <TextView
+                        android:id="@+id/AnsHp"
+                        style="@style/othersTextView" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <Spinner
+                        android:id="@+id/HPSpinner"
+                        style="@style/dropDown" />
+                    <Button
+                        android:id="@+id/HPSolve"
+                        android:text="Solve"
+                        style="@style/button" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                style="@style/layoutButton">
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <LinearLayout
+                        style="@style/layoutColumn">
+                        <TextView
+                            android:text="Two Equations:"
+                            style="@style/header" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <TextView
+                        android:text="a1:"
+                        style="@style/othersTextView"
+                        android:gravity="center" />
+                    <EditText
+                        android:id="@+id/TwoA1"
+                        style="@style/othersTextBox" />
+                    <TextView
+                        android:text="a2:"
+                        style="@style/othersTextView"
+                        android:gravity="center" />
+                    <EditText
+                        android:id="@+id/TwoA2"
+                        style="@style/othersTextBox" />
+                    <TextView
+                        android:text="a:"
+                        style="@style/othersTextView"
+                        android:gravity="center" />
+                    <EditText
+                        android:id="@+id/TwoA"
+                        style="@style/othersTextBox" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <TextView
+                        android:text="b1:"
+                        style="@style/othersTextView"
+                        android:gravity="center" />
+                    <EditText
+                        android:id="@+id/TwoB1"
+                        style="@style/othersTextBox" />
+                    <TextView
+                        android:text="b2:"
+                        style="@style/othersTextView"
+                        android:gravity="center" />
+                    <EditText
+                        android:id="@+id/TwoB2"
+                        style="@style/othersTextBox" />
+                    <TextView
+                        android:text="b:"
+                        style="@style/othersTextView"
+                        android:gravity="center" />
+                    <EditText
+                        android:id="@+id/TwoB"
+                        style="@style/othersTextBox" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <LinearLayout
+                        style="@style/layoutColumn">
+                        <TextView
+                            android:id="@+id/AnsTwoX"
+                            android:gravity="start"
+                            style="@style/textView" />
+                        <TextView
+                            android:id="@+id/AnsTwoY"
+                            android:gravity="start"
+                            style="@style/textView" />
+                    </LinearLayout>
+                    <Button
+                        android:id="@+id/TwoSolve"
+                        android:text="Solve"
+                        style="@style/button" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                style="@style/layoutButton">
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <LinearLayout
+                        style="@style/layoutColumn">
+                        <TextView
+                            android:text="Three Equations:"
+                            style="@style/header" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <TextView
+                        android:text="a1:"
+                        style="@style/othersTextView"
+                        android:gravity="center" />
+                    <EditText
+                        android:id="@+id/ThreeA1"
+                        style="@style/othersTextBox" />
+                    <TextView
+                        android:text="a2:"
+                        style="@style/othersTextView"
+                        android:gravity="center" />
+                    <EditText
+                        android:id="@+id/ThreeA2"
+                        style="@style/othersTextBox" />
+                    <TextView
+                        android:text="a3:"
+                        style="@style/othersTextView"
+                        android:gravity="center" />
+                    <EditText
+                        android:id="@+id/ThreeA3"
+                        style="@style/othersTextBox" />
+                    <TextView
+                        android:text="a:"
+                        style="@style/othersTextView"
+                        android:gravity="center" />
+                    <EditText
+                        android:id="@+id/ThreeA"
+                        style="@style/othersTextBox" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <TextView
+                        android:text="b1:"
+                        style="@style/othersTextView"
+                        android:gravity="center" />
+                    <EditText
+                        android:id="@+id/ThreeB1"
+                        style="@style/othersTextBox" />
+                    <TextView
+                        android:text="b2:"
+                        style="@style/othersTextView"
+                        android:gravity="center" />
+                    <EditText
+                        android:id="@+id/ThreeB2"
+                        style="@style/othersTextBox" />
+                    <TextView
+                        android:text="b3:"
+                        style="@style/othersTextView"
+                        android:gravity="center" />
+                    <EditText
+                        android:id="@+id/ThreeB3"
+                        style="@style/othersTextBox" />
+                    <TextView
+                        android:text="b:"
+                        style="@style/othersTextView"
+                        android:gravity="center" />
+                    <EditText
+                        android:id="@+id/ThreeB"
+                        style="@style/othersTextBox" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <TextView
+                        android:text="c1:"
+                        style="@style/othersTextView"
+                        android:gravity="center" />
+                    <EditText
+                        android:id="@+id/ThreeC1"
+                        style="@style/othersTextBox" />
+                    <TextView
+                        android:text="c2:"
+                        style="@style/othersTextView"
+                        android:gravity="center" />
+                    <EditText
+                        android:id="@+id/ThreeC2"
+                        style="@style/othersTextBox" />
+                    <TextView
+                        android:text="c3:"
+                        style="@style/othersTextView"
+                        android:gravity="center" />
+                    <EditText
+                        android:id="@+id/ThreeC3"
+                        style="@style/othersTextBox" />
+                    <TextView
+                        android:text="c:"
+                        style="@style/othersTextView"
+                        android:gravity="center" />
+                    <EditText
+                        android:id="@+id/ThreeC"
+                        style="@style/othersTextBox" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <LinearLayout
+                        style="@style/layoutColumn">
+                        <TextView
+                            android:id="@+id/AnsThreeX"
+                            android:gravity="start"
+                            style="@style/textView" />
+                        <TextView
+                            android:id="@+id/AnsThreeY"
+                            android:gravity="start"
+                            style="@style/textView" />
+                        <TextView
+                            android:id="@+id/AnsThreeZ"
+                            android:gravity="start"
+                            style="@style/textView" />
+                    </LinearLayout>
+                    <Button
+                        android:id="@+id/ThreeSolve"
+                        android:text="Solve"
+                        style="@style/button" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                style="@style/layoutButton">
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <LinearLayout
+                        style="@style/layoutColumn">
+                        <TextView
+                            android:text="Conversions:"
+                            style="@style/header" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <Spinner
+                        android:id="@+id/ConvSpinner"
+                        style="@style/dropDown" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <EditText
+                        android:id="@+id/Conv_From"
+                        style="@style/othersTextBox"
+                        android:inputType="number|numberSigned|numberDecimal" />
+                    <Spinner
+                        android:id="@+id/FromSpinner"
+                        style="@style/dropDown" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <TextView
+                        android:text="TO"
+                        android:gravity="center"
+                        style="@style/othersTextView" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layoutRow">
+                    <TextView
+                        android:id="@+id/Conv_To"
+                        style="@style/othersTextBox" />
+                    <Spinner
+                        android:id="@+id/ToSpinner"
+                        style="@style/dropDown" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/layout">
+    <ScrollView
+        style="@style/layout">
+        <LinearLayout
+            style="@style/layoutButton">
+            <LinearLayout
+                android:padding="2dp"
+                style="@style/layoutRow">
+                <TextView
+                    android:text="Type:"
+                    style="@style/othersTextView"
+                    android:textSize="20sp" />
+                <Spinner
+                    android:id="@+id/MatrixOrStatSpinner"
+                    style="@style/dropDown" />
+            </LinearLayout>
+            <LinearLayout
+                android:padding="2dp"
+                style="@style/layoutRow">
+                <TextView
+                    android:text="Key:"
+                    style="@style/othersTextView"
+                    android:textSize="20sp" />
+                <Spinner
+                    android:id="@+id/AtoF"
+                    style="@style/dropDown" />
+            </LinearLayout>
+            <LinearLayout
+                android:padding="2dp"
+                style="@style/layoutRow">
+                <TextView
+                    android:text="Value:"
+                    style="@style/othersTextView"
+                    android:textSize="20sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/IsMat"
+                android:visibility="gone"
+                android:padding="2dp"
+                style="@style/layoutRow">
+                <TextView
+                    android:text="m:"
+                    android:gravity="center"
+                    style="@style/othersTextView" />
+                <EditText
+                    android:inputType="number"
+                    android:id="@+id/MatrixM"
+                    style="@style/othersTextBox" />
+                <TextView
+                    android:text="n:"
+                    android:gravity="center"
+                    style="@style/othersTextView" />
+                <EditText
+                    android:inputType="number"
+                    android:id="@+id/MatrixN"
+                    style="@style/othersTextBox" />
+            </LinearLayout>
+            <LinearLayout
+                android:padding="2dp"
+                android:id="@+id/IsStat"
+                style="@style/layoutRow">
+                <EditText
+                    android:id="@+id/StatCount"
+                    style="@style/othersTextBox"
+                    android:layout_margin="20dp"
+                    android:inputType="number" />
+            </LinearLayout>
+            <LinearLayout
+                android:padding="2dp"
+                style="@style/layoutRow">
+                <Button
+                    android:id="@+id/BackFromList"
+                    android:text="Back"
+                    style="@style/button"
+                    android:layout_margin="5dp" />
+                <Button
+                    android:id="@+id/NextFromList"
+                    android:text="Next"
+                    style="@style/button"
+                    android:layout_margin="5dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
